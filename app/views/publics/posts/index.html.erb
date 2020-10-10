@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <h2>
+      <span style="display: inline-block;">投稿一覧</span>
+      <span style="display: inline-block;">（全<%= @posts.count %>件）</span>
+    </h2>
+  </div>
+
+  <% @posts.each do |post| %>
+    <% if post.genre.genre_status == true %>
+      <div class="clearfix col-xs-4">
+        <%= link_to post_path(post.id) do %>
+          <div class="field">
+            <%= attachment_image_tag(post, :post_image, size: "180x130", fallback: 'no_image.jpg') %>
+          </div>
+          <h4><%= post.title %></h4>
+        <% end %>
+        <p><%= post.genre.name %></p>
+        <span><%= attachment_image_tag(post.user, :profile_image, size: "30x30", fallback: 'no_image.jpg') %></span>
+        <span class="bottom-text"><%= post.user.name %></span>
+      </div>
+    <% end %>
+  <% end %>
+</div>

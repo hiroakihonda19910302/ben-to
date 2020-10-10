@@ -7,9 +7,60 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/da6e295665.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left">
+          <% if admin_signed_in? %>
+            <h3><%= link_to "BEN-TO", admins_top_path %></h3>
+          <% else %>
+            <h3><%= link_to "BEN-TO", root_path %></h3>
+          <% end %>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><%= link_to 'マイページ', users_path, class: 'glyphicon glyphicon-user' %></li>
+              <li><%= link_to '新規投稿', new_post_path, class: 'glyphicon glyphicon-pencil' %></li>
+              <li><%= link_to '投稿一覧', posts_path, class: 'glyphicon glyphicon-list' %></li>
+              <li><%= link_to '検索', search_posts_path, class: 'glyphicon glyphicon-search' %></li>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out' %></li>
+            <% elsif admin_signed_in? %>
+              <li><%= link_to '投稿一覧', admins_posts_path, class: 'glyphicon glyphicon-list' %></li>
+              <li><%= link_to '会員一覧', admins_users_path, class: 'glyphicon glyphicon-user' %></li>
+              <li><%= link_to 'ランキング一覧', ranking_admins_posts_path, class: 'glyphicon glyphicon-stats' %></li>
+              <li><%= link_to 'ジャンル一覧', admins_genres_path, class: 'glyphicon glyphicon-th-large' %></li>
+              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'glyphicon glyphicon-log-out' %></li>
+            <% else %>
+              <li><%= link_to 'About', about_path, class: 'glyphicon glyphicon-link' %></li>
+              <li><%= link_to 'サインアップ', new_user_registration_path, class: 'glyphicon glyphicon-edit' %></li>
+              <li><%= link_to 'ログイン', new_user_session_path, class: 'glyphicon glyphicon-log-in' %></li>
+              <li><%= link_to '投稿一覧', posts_path, class: 'glyphicon glyphicon-list' %></li>
+              <li><%= link_to '検索', search_posts_path, class: 'glyphicon glyphicon-search' %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div id="flash">
+          <%= render "layouts/flash" %>
+        </div>
+      </div>
+      <%= yield %>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-xs-offset-9">
+            <p>CopyRight</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

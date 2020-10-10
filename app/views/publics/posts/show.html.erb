@@ -1,0 +1,23 @@
+<div class='row'>
+	<div class="col-xs-5">
+		<!-- ここに👍ボタンとお気に入りボタンと評価を追加する -->
+		
+    <%= attachment_image_tag(@post, :post_image, size: "380x300", fallback: "no_image.jpg") %>
+  </div>
+
+  <div class="col-xs-7">
+  	<% if @post.user == current_user %>
+  		<td><%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger destroy_post_#{@post.id} pull-right destroy-button" %></td>
+			<td><%= link_to "編集", edit_post_path(@post), class: "btn btn-success edit_post_#{@post.id} pull-right" %></td>
+		<% end %>
+    <h3><strong><%= @post.title %></strong></h3>
+    <p><strong><%= @post.genre.name %></strong></p>
+    <p><%= @post.body %></p>
+  </div>
+</div>
+<div class='row'>
+  <div class="col-xs-12 text-center">
+    <h3><strong>新規レビュー</strong></h3>
+	<!-- ここに新規レビューを追加する -->
+  </div>
+</div>

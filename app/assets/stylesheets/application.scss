@@ -13,3 +13,56 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+header {
+	color:white;
+}
+
+header .navbar-left span {
+	font-size: 20px;
+	padding-top: 10px;
+}
+
+body {
+	margin-top: 60px;
+}
+
+.actions {
+	margin-top:10px;
+}
+#error_explanation {
+  color: red;
+}
+
+.image1 {
+  background-image: url(image1.jpg);
+}
+.image2 {
+  background-image: url(image2.jpg);
+}
+.image3 {
+  background-image: url(image3.jpg);
+}
+.image4 {
+  background-image: url(image4.jpg);
+}
+.image5 {
+  background-image: url(image5.jpg);
+}
+
+#container-img{
+  height: 500px;
+}
+
+h3 {
+  margin-top: 12px;
+}
+
+.welcome {
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+  background-image: url(image1.jpg);
+}

@@ -1,0 +1,38 @@
+// Place all the styles related to the publics::posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.bottom-text {
+	position: absolute;
+	bottom: 0;
+}
+
+.search-form {
+	width: 450px;
+	height: 35px;
+}
+
+.genre_name_button {
+	width: 200px;
+	margin-top: 25px;
+}
+
+.genres-select {
+	width: 600px;
+}
+
+.action-button {
+	margin-top: 10px;
+}
+
+.destroy-button {
+	margin-left: 10px;
+}
+
+.all-posts {
+	margin-top: 30px;
+	margin-right: 100px;
+}
+
+.search-name {
+	margin-top: 30px;
+}

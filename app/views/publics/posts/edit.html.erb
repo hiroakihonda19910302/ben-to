@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col-xs-12 text-center">
+		<h2>投稿編集</h2>
+	</div>
+</div>
+
+<div class="row">
+	<%= form_for(@post, url: post_path, method: :patch, class: "form-horizontal") do |f| %>
+		<div class="col-xs-5">
+			<div class="img_field">
+				<%= attachment_image_tag(@post, :post_image, size: "380x300") %>
+			</div>
+      <div class="form-group">
+        <%= f.attachment_field :post_image, class: "post_image" %>
+      </div>
+    </div>
+
+    <div class="col-xs-7">
+    	<div class="form-group">
+  			<h4><%= f.label :"ジャンル", class: "control-label" %></h4>
+        <div class="genres-select">
+  			 <%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "-- 選択してください --") %>
+        </div>
+			</div>
+			<div class="form-group">
+  			<h4><%= f.label :"タイトル", class: "control-label" %></h4>
+  			<%= f.text_field :title, class: "col-xs-12 form-control" %>
+			</div></br></br>
+			<div class="form-group">
+  			<h4><%= f.label :"本文", class: "control-label" %></h4>
+  			<%= f.text_area :body, rows: 6, class: "col-xs-12 form-control" %>
+			</div>
+    	<div class="actions">
+        <%= f.submit "変更を保存する", class: "btn btn-success btn-lg pull-right action-button" %>
+      </div>
+  	</div>
+  <% end %>
+</div>

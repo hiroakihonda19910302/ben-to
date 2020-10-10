@@ -1,0 +1,54 @@
+<div class="row">
+	<div class="col-xs-12 text-center">
+		<h2>マイページ</h2>
+	</div>
+
+	<div class="col-xs-3">
+		<h4><strong>ユーザー情報</strong></h4>
+		<table class="table table-hover table-bordered">
+			<tr><%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, fallback: "no_image2.jpg") %></tr>
+			<tr>
+				<th class="info user-form">ユーザー名</th>
+				<th class="text-center"><%= @user.name %></th>
+			</tr>
+			<tr>
+				<th class="info user-form">メールアドレス</th>
+				<th class="text-center"><%= @user.email %></th>
+			</tr>
+		</table>
+		<%= link_to " 編集", edit_users_path, class: "glyphicon glyphicon-wrench btn btn-success" %>
+		<%= link_to " パスワードの変更", edit_user_password_path, class: "glyphicon glyphicon-cog btn btn-warning pull-right" %>
+	</div>
+
+	<div class="col-xs-9">
+		<h4><strong>自分の投稿</strong></h4>
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr class="info">
+					<th class="image-form"></th>
+					<th>タイトル</th>
+					<th>ジャンル</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @user.posts.each do |post| %>
+				<tr>
+					<td class="text-center">
+						<%= attachment_image_tag(post, :post_image, size: "60x40", fallback: "no_image.jpg") %>
+					</td>
+					<td><%= link_to post.title, post_path(post) %></td>
+					<td><%= post.genre.name %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12 favorite-group">
+		<h4><strong>お気に入り</strong></h4>
+		<!-- ここにお気に入りした投稿を入れる -->
+	</div>
+</div>
