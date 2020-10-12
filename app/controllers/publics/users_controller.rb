@@ -2,6 +2,7 @@ class Publics::UsersController < ApplicationController
   before_action :set_user
 
   def show
+    @favorites = Favorite.where(user_id: current_user.id)
   end
 
   def edit

@@ -1,2 +1,27 @@
-<h1>Publics::Reviews#index</h1>
-<p>Find me in app/views/publics/reviews/index.html.erb</p>
+<div class='row'>
+	<div class="col-xs-12 text-center">
+		<h2>レビュー一覧</h2>
+	</div>
+	<div class="col-xs-12">
+		<ol style="list-style:none">
+			<% @post.reviews.each do |review| %>
+				<li class='review-group'>
+					<div class='review-group-image'>
+						<%= attachment_image_tag(review.user, :profile_image, :fill, 100, 100, fallback: "no_image2.jpg") %>
+					</div>
+					<div class='review-group-name'>
+						<h4>ユーザー名：<%= review.user.name %></h4>
+					</div>
+					<% if review.user == current_user %>
+						<div class='review-group-destroy'>
+							<%= link_to "Destroy", post_review_path(review.post, review), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger" %>
+						</div>
+					<% end %>
+				</li>
+				<li class='form-control review-list' readonly><%= review.title %></li>
+				<li class='form-control review-list' readonly><%= review.review %></li>
+			<% end %>
+		</ol>
+	</div>
+	<%= link_to "投稿詳細へ戻る", post_path(@post), class: "btn btn-info pull-right" %>
+</div>

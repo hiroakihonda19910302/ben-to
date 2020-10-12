@@ -1,3 +1,20 @@
 // Place all the styles related to the publics::reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.review-group {
+	display: flex;
+	margin-top: 70px;
+}
+
+.review-group-name {
+	margin-left: 40px;
+}
+
+.review-group-destroy {
+	margin-left: 100px;
+}
+
+.review-list {
+	margin-top: 10px;
+}
