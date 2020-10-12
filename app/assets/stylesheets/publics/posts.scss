@@ -28,6 +28,10 @@
 	margin-left: 10px;
 }
 
+.review-button {
+	margin-top: 10px;
+}
+
 .all-posts {
 	margin-top: 30px;
 	margin-right: 100px;
@@ -35,4 +39,23 @@
 
 .search-name {
 	margin-top: 30px;
+}
+
+.post-img {
+	margin-top: 10px;
+}
+
+.check-list {
+	display: flex;
+	justify-content: space-around;
+	font-size: 30px;
+}
+
+.form-review {
+	display: flex;
+	margin-top: 30px;
+}
+
+.form-review-title {
+	width: 200px;
 }

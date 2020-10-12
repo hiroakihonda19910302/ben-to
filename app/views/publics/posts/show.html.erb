@@ -1,8 +1,45 @@
 <div class='row'>
 	<div class="col-xs-5">
 		<!-- ここに👍ボタンとお気に入りボタンと評価を追加する -->
-		
-    <%= attachment_image_tag(@post, :post_image, size: "380x300", fallback: "no_image.jpg") %>
+    <% if @post.user != current_user %>
+    <div class="check-list">
+      <div class="bookmark-button">
+      <!-- お気に入りボタン -->
+		    <% if @post.favorited_by?(current_user) %>
+          <%= link_to post_favorites_path(@post), method: :delete do %>
+            <span class="glyphicon glyphicon-star" style="color: #FFD700;"></span>
+          <% end %>
+        <% else %>
+          <%= link_to post_favorites_path(@post), method: :post do %>
+            <span class="glyphicon glyphicon-star-empty" style="color: #FFD700;"></span>
+          <% end %>
+        <% end %>
+      </div>
+      <!-- 👍ボタン -->
+      <div class="good-button">
+        <% if @post.gooded_by?(current_user) %>
+          <%= link_to post_goods_path(@post), method: :delete do %>
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+            <%= @post.goods.count %>
+          <% end %>
+        <% else %>
+          <%= link_to post_goods_path(@post), method: :post do %>
+            <span class="glyphicon glyphicon-thumbs-up" style="color: #FFF0F5;"></span>
+            <%= @post.goods.count %>
+          <% end %>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to post_reviews_path(@post) do %>
+          <%= @post.reviews.count %>
+        <% end %>
+      <!-- レビュー評価 -->
+      </div>
+    </div>
+    <% end %>
+    <div class="post-img">
+      <%= attachment_image_tag(@post, :post_image, size: "380x300", fallback: "no_image.jpg") %>
+    </div>
   </div>
 
   <div class="col-xs-7">
@@ -19,5 +56,19 @@
   <div class="col-xs-12 text-center">
     <h3><strong>新規レビュー</strong></h3>
 	<!-- ここに新規レビューを追加する -->
+    <div class="col-xs-12">
+      <%= form_for [@post,@review] do |f| %>
+        <div class="form-review">
+          <h4 class="form-review-title"><%= f.label :"タイトル", class: "control-label" %></h4>
+          <%= f.text_area :title, class: "form-control" %>
+        </div>
+
+        <div class="form-review">
+          <h4 class="form-review-title"><%= f.label :"レビュー", class: "control-label" %></h4>
+          <%= f.text_area :review, rows:'5', class: "form-control" %>
+        </div>
+        <%= f.submit "送信する", class: "btn btn-info pull-right review-button" %>
+      <% end %>
+    </div>
   </div>
 </div>

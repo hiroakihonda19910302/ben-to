@@ -4,7 +4,7 @@
 	</div>
 
 	<div class="col-xs-3">
-		<h4><strong>ユーザー情報</strong></h4>
+		<h3><strong>ユーザー情報</strong></h3>
 		<table class="table table-hover table-bordered">
 			<tr><%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, fallback: "no_image2.jpg") %></tr>
 			<tr>
@@ -21,13 +21,13 @@
 	</div>
 
 	<div class="col-xs-9">
-		<h4><strong>自分の投稿</strong></h4>
+		<h3><strong>自分の投稿</strong></h3>
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr class="info">
 					<th class="image-form"></th>
-					<th>タイトル</th>
-					<th>ジャンル</th>
+					<th class="text-center">タイトル</th>
+					<th class="text-center">ジャンル</th>
 				</tr>
 			</thead>
 
@@ -37,8 +37,8 @@
 					<td class="text-center">
 						<%= attachment_image_tag(post, :post_image, size: "60x40", fallback: "no_image.jpg") %>
 					</td>
-					<td><%= link_to post.title, post_path(post) %></td>
-					<td><%= post.genre.name %></td>
+					<td class="text-center"><%= link_to post.title, post_path(post) %></td>
+					<td class="text-center"><%= post.genre.name %></td>
 				</tr>
 				<% end %>
 			</tbody>
@@ -48,7 +48,27 @@
 
 <div class="row">
 	<div class="col-xs-12 favorite-group">
-		<h4><strong>お気に入り</strong></h4>
-		<!-- ここにお気に入りした投稿を入れる -->
+		<h3><strong>お気に入り</strong></h3>
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr class="info">
+						<th class="image-form2"></th>
+						<th class="text-center favorite-font">タイトル</th>
+						<th class="text-center favorite-font">ジャンル</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @favorites.each do |favorite| %>
+					<tr>
+						<td class="text-center">
+							<%= attachment_image_tag(favorite.post, :post_image, size: "240x160", fallback: "no_image.jpg") %>
+						</td>
+						<td class="text-center favorite-font"><%= link_to favorite.post.title, post_path(favorite.post) %></td>
+						<td class="text-center favorite-font"><%= favorite.post.genre.name %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
 	</div>
 </div>
