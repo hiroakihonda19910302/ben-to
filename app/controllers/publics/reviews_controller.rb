@@ -1,4 +1,5 @@
 class Publics::ReviewsController < ApplicationController
+  before_action :authenticate_user!
   def index
   	@post = Post.find(params[:post_id])
   end
@@ -19,6 +20,6 @@ class Publics::ReviewsController < ApplicationController
 
   private
   	def review_params
-    	params.require(:review).permit(:title, :review)
+    	params.require(:review).permit(:title, :review, :rate)
  	end
 end

@@ -2,17 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* CONTAINER BLOCK SHADOWS */
+/* ログインページ、サインアップページ */
 .has-shadow {
-  -webkit-box-shadow: 0px 6px 20px 0px #a1a1a1;
-  -moz-box-shadow: 0px 6px 20px 0px #a1a1a1;
-  box-shadow: 0px 6px 20px 0px #a1a1a1;
+  filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.6));
 }
-/* QUICK BORDER RADIUS CLASSES */
 .rounded {
-  border-radius: 2px !important;
+  border-radius: 30px !important;
 }
-/* SECTIONS */
 section.slice {
   padding: 46px 0;
   position: relative;
@@ -31,17 +27,17 @@ section.slice-lg {
 .has-icon .form-control {
   padding-left: 30px;
 }
-
-/* USER FORM */
 .form-user {
   background-color: #ffffff;
   color: #333333;
   border: 1px solid #ecf0f1;
+  border-radius: 30px;
 }
 .form-user .form-header {
   padding: 24px 0;
   background-color: #ecf0f1;
   border-bottom: 1px solid #ecf0f1;
+  border-radius: 30px 30px 0 0;
 }
 .form-user .form-header .form-header-title {
   margin: 0;
@@ -51,9 +47,8 @@ section.slice-lg {
 .form-user .form-body {
   padding: 30px;
   background-color: #ffffff;
+  border-radius: 30px;
 }
-
-/* FORM CONTROL ICON */
 .form-control-icon {
   color: rgba(0, 0, 0, 0.4);
   position: absolute;
@@ -67,6 +62,8 @@ section.slice-lg {
   text-align: center;
   pointer-events: none;
 }
+
+
 
 .favorite-group {
   margin-top: 30px;

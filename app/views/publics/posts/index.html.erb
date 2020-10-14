@@ -5,19 +5,28 @@
       <span style="display: inline-block;">（全<%= @posts.count %>件）</span>
     </h2>
   </div>
+</div>
 
+<div class="row post-list">
   <% @posts.each do |post| %>
     <% if post.genre.genre_status == true %>
-      <div class="clearfix col-xs-4">
-        <%= link_to post_path(post.id) do %>
-          <div class="field">
-            <%= attachment_image_tag(post, :post_image, size: "180x130", fallback: 'no_image.jpg') %>
-          </div>
-          <h4><%= post.title %></h4>
+      <div class="clearfix col-xs-4 post-item">
+        <div class="post-item-image">
+          <%= attachment_image_tag(post, :post_image, size: "350x300", fallback: 'no_image.jpg') %>
+        </div>
+        <div class="margin-base-2">
+          <%= attachment_image_tag(post.user, :profile_image, size: "50x50", class: "img-circle iconimg-base1 ", fallback: 'no_image.jpg') %>
+          <span class="post-item-username">by: <%= post.user.name %></span>
+        </div>
+        <span class="post-item-genre">
+          <%= post.genre.name %>
+        </span>
+        <%= link_to post_path(post.id), :style=>"color: tomato;" do %>
+          <h4 class="post-item-title">
+            <span><%= post.title %></span>
+          </h4>
         <% end %>
-        <p><%= post.genre.name %></p>
-        <span><%= attachment_image_tag(post.user, :profile_image, size: "30x30", fallback: 'no_image.jpg') %></span>
-        <span class="bottom-text"><%= post.user.name %></span>
+
       </div>
     <% end %>
   <% end %>
