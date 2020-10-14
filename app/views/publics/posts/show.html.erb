@@ -1,74 +1,180 @@
-<div class='row'>
+<!-- 他のページに影響がでた為こちらに記述 -->
+<style>
+.checklist-bookmark {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  margin-bottom: 10px;
+}
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+a.btn-tag {
+  padding: 1rem 1.5rem 0.5rem 50px;
+}
+a.btn-tag:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 100%;
+  content: "";
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+a.btn-tag--favorite {
+  color: #fff;
+  background: #f39800;
+}
+a.btn-tag--favorite:before {
+  background: #fff;
+}
+a.btn-tag--favorite i {
+  font-size: 120%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  padding: 1.2rem 0;
+  transition: all 0.3s;
+  text-align: center;
+  letter-spacing: 0;
+  opacity: 0.5;
+  color: #f39800;
+}
+a.btn-tag--favorite:hover {
+  background: #ffa50e;
+}
+a.btn-tag--favorite:hover i {
+  transform: scale(1.1);
+  opacity: 1;
+}
+</style>
+
+<div class='row post-detail'>
 	<div class="col-xs-5">
-		<!-- ここに👍ボタンとお気に入りボタンと評価を追加する -->
     <% if @post.user != current_user %>
-    <div class="check-list">
-      <div class="bookmark-button">
-      <!-- お気に入りボタン -->
+    <div class="checklist">
+      <!-- お気に入り -->
+      <div class="checklist-bookmark">
 		    <% if @post.favorited_by?(current_user) %>
-          <%= link_to post_favorites_path(@post), method: :delete do %>
-            <span class="glyphicon glyphicon-star" style="color: #FFD700;"></span>
-          <% end %>
+          <a>
+            <%= link_to post_favorites_path(@post), class: 'btn btn-tag btn-tag--favorite', method: :delete do %>
+              <i class="fas fa-star"></i>お気に入りから外す
+            <% end %>
+          </a>
         <% else %>
-          <%= link_to post_favorites_path(@post), method: :post do %>
-            <span class="glyphicon glyphicon-star-empty" style="color: #FFD700;"></span>
-          <% end %>
+          <a>
+            <%= link_to post_favorites_path(@post), class: 'btn btn-tag btn-tag--favorite', method: :post do %>
+              <i class="far fa-star"></i>お気に入り登録する
+            <% end %>
+          </a>
         <% end %>
       </div>
-      <!-- 👍ボタン -->
-      <div class="good-button">
+      <!-- イイね -->
+      <div class="checklist-good">
         <% if @post.gooded_by?(current_user) %>
-          <%= link_to post_goods_path(@post), method: :delete do %>
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-            <%= @post.goods.count %>
+          <%= link_to post_goods_path(@post), :style=>"color: white;", method: :delete do %>
+            <span class="glyphicon glyphicon-heart" style="color: red;"></span>
+            <span class="badge"><%= @post.goods.count %>　イイね</span>
           <% end %>
         <% else %>
-          <%= link_to post_goods_path(@post), method: :post do %>
-            <span class="glyphicon glyphicon-thumbs-up" style="color: #FFF0F5;"></span>
-            <%= @post.goods.count %>
+          <%= link_to post_goods_path(@post), :style=>"color: white;", method: :post do %>
+            <span class="glyphicon glyphicon-heart-empty" style="color: red;"></span>
+            <span class="badge"><%= @post.goods.count %>　イイね</span>
           <% end %>
         <% end %>
-      </div>
-      <div>
-        <%= link_to post_reviews_path(@post) do %>
-          <%= @post.reviews.count %>
-        <% end %>
-      <!-- レビュー評価 -->
       </div>
     </div>
     <% end %>
-    <div class="post-img">
-      <%= attachment_image_tag(@post, :post_image, size: "380x300", fallback: "no_image.jpg") %>
-    </div>
-  </div>
-
-  <div class="col-xs-7">
-  	<% if @post.user == current_user %>
-  		<td><%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger destroy_post_#{@post.id} pull-right destroy-button" %></td>
-			<td><%= link_to "編集", edit_post_path(@post), class: "btn btn-success edit_post_#{@post.id} pull-right" %></td>
-		<% end %>
-    <h3><strong><%= @post.title %></strong></h3>
-    <p><strong><%= @post.genre.name %></strong></p>
-    <p><%= @post.body %></p>
-  </div>
-</div>
-<div class='row'>
-  <div class="col-xs-12 text-center">
-    <h3><strong>新規レビュー</strong></h3>
-	<!-- ここに新規レビューを追加する -->
-    <div class="col-xs-12">
-      <%= form_for [@post,@review] do |f| %>
-        <div class="form-review">
-          <h4 class="form-review-title"><%= f.label :"タイトル", class: "control-label" %></h4>
-          <%= f.text_area :title, class: "form-control" %>
-        </div>
-
-        <div class="form-review">
-          <h4 class="form-review-title"><%= f.label :"レビュー", class: "control-label" %></h4>
-          <%= f.text_area :review, rows:'5', class: "form-control" %>
-        </div>
-        <%= f.submit "送信する", class: "btn btn-info pull-right review-button" %>
+    <!-- 評価 -->
+    <div class="checklist-review">
+      <%= link_to post_reviews_path(@post), :style=>"color: white;" do %>
+        <span class="far fa-comment-dots" style="color: blue;"></span>
+        <span class="badge"><%= @post.reviews.count %>　レビュー</span>
       <% end %>
+      <!-- ここに☆評価を追加する -->
+      <div class="average-review">
+        <strong>総合評価：<%= @average_review %>点 | 平均</strong>
+      </div>
+      <span class="average-review-rating" data-score="<%= @average_review %>"></span>
+    </div>
+    <div class="post-image">
+      <%= attachment_image_tag(@post, :post_image, size: "440x320", fallback: "no_image.jpg") %>
     </div>
   </div>
+
+  <div class="col-xs-7 post-body">
+    <h3 class="post-body-title"><%= @post.title %></h3><br>
+    <h4>
+      <span class="post-body-genre">
+        <%= @post.genre.name %>
+      </span>
+    </h4>
+    <div class="col-xs-10 post-body-content"><%= @post.body %></div>
+  </div>
+  <% if @post.user == current_user %>
+    <td><%= link_to " 削除", post_path(@post), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "glyphicon glyphicon-trash btn btn-danger destroy_post_#{@post.id} pull-right btn-base-3" %></td>
+    <td><%= link_to " 編集", edit_post_path(@post), class: "glyphicon glyphicon-edit btn btn-success edit_post_#{@post.id} pull-right btn-base-1" %></td>
+  <% end %>
 </div>
+<% if @post.user != current_user %>
+<div class='row margin-base-1'>
+  <div class="col-xs-12 text-center new-review">
+    <h3><strong>新規レビュー</strong></h3>
+      <%= form_for [@post,@review] do |f| %>
+        <div id="star">
+          <h4 class="form-review-label1"><%= f.label :"評価", class: "control-label" %></h4>
+          <%= f.hidden_field :rate, id: :review_star %>
+        </div>
+        <div class="form-review">
+          <h4 class="form-review-label2"><%= f.label :"見出し", class: "control-label" %></h4>
+          <%= f.text_area :title, class: "form-control form-review-text" %>
+        </div>
+        <div class="form-review">
+          <h4 class="form-review-label2"><%= f.label :"レビュー", class: "control-label" %></h4>
+          <%= f.text_area :review, rows:'4', class: "form-control form-review-text" %>
+        </div>
+        <%= f.submit "送信する", class: "btn btn-defalt pull-right btn-base-6" %>
+      <% end %>
+  </div>
+</div>
+<% end %>
+
+<!-- 評価 -->
+<script>
+ $('#star').raty({
+   size: 36,
+   starOff: "<%= asset_path('star-off.png') %>",
+   starOn: "<%= asset_path('star-on.png') %>",
+   starHalf: "<%= asset_path('star-half.png') %>",
+   scoreName: 'review[rate]',
+   half: true,
+ });
+</script>
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>

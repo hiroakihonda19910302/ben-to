@@ -3,26 +3,26 @@
   	<h3 class="fas fa-search">入力して検索</h3>
   	<%= form_with(url: posts_path, method: :get, local: :true) do |f| %>
   		<%= f.text_field :title_search, class: "search-form", placeholder:"検索ワードを入力" %>
-  		<%= f.submit '投稿検索', class: "btn btn-primary btn-md"  %>
+  		<%= f.submit '投稿検索', class: "btn btn-primary btn-md btn-base-5"  %>
 		<% end %>
 	</div>
 </div>
 
 <div class='row'>
-  <div class="col-xs-12 text-center search-name">
+  <div class="col-xs-12 text-center margin-base-1">
   	<h3 class="fas fa-search">ジャンル検索</h3>
   </div>
   <% @genres.each do |genre| %>
   	<% if genre.genre_status == true %>
-  		<div class="clearfix col-xs-4 text-center">
+  		<div class="col-xs-4 text-center">
   			<%= form_with(url: posts_path, method: :get, local: :true) do |f| %>
   				<%= f.hidden_field :search, value:genre.id %>
-  				<%= f.submit genre.name, class: "btn btn-info btn-lg genre_name_button" %>
+  				<%= f.submit genre.name, class: "btn btn-info btn-lg btn-base-4" %>
   			<% end %>
 			</div>
   	<% end %>
   <% end %>
   <h4>
-  	<%= link_to "⇒ すべての投稿を見る", posts_path, class: 'dark-blue-letter pull-right all-posts' %>
+  	<%= link_to "⇒ すべての投稿を見る", posts_path, class: 'pull-right margin-base-1' %>
  	</h4>
 </div>

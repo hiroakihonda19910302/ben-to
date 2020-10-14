@@ -1,4 +1,5 @@
 class Publics::PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :search]
   before_action :set_genres, only: [:new, :edit, :index, :create, :update, :search]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
@@ -23,6 +24,12 @@ class Publics::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @review = Review.new
+
+    if @post.reviews.blank?
+      @average_review = 0
+    else
+      @average_review = @post.reviews.average(:rate).round(1)
+    end
   end
 
   def ranking

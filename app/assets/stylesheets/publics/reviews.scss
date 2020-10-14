@@ -2,19 +2,60 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.review-group {
-	display: flex;
-	margin-top: 70px;
+.balloon5 {
+  width: 100%;
+  margin: 1.5em 0;
+  overflow: hidden;
 }
 
-.review-group-name {
-	margin-left: 40px;
+.balloon5 .faceicon {
+  float: left;
+  margin-right: -90px;
+  width: 80px;
 }
 
-.review-group-destroy {
-	margin-left: 100px;
+.balloon5 .faceicon-img {
+  width: 100%;
+  height: auto;
+  border: solid 3px #d7ebfe;
+  border-radius: 50%;
 }
 
-.review-list {
-	margin-top: 10px;
+.balloon5 .posticon-img {
+	margin-bottom: 70px;
+  border: solid 3px #d7ebfe;
+  border-radius: 20%;
+}
+
+.balloon5 .chatting {
+  width: 100%;
+}
+
+.says {
+  display: inline-block;
+  position: relative; 
+  margin: 5px 0 0 105px;
+  padding: 17px 13px;
+  border-radius: 12px;
+  background: #d7ebfe;
+}
+
+.says:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 18px; 
+  left: -24px;
+  border: 12px solid transparent;
+  border-right: 12px solid #d7ebfe;
+}
+
+.says p {
+  margin: 0;
+  padding: 0;
+}
+
+.destroy-button {
+	background-color: transparent;
+	border: none;
 }

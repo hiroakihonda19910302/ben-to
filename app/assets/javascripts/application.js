@@ -16,6 +16,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+//= require jquery.raty.js
 
 $(document).ready(function () {
   $("#theTarget").skippr({
@@ -41,3 +42,7 @@ $(document).ready(function () {
     hidePrevious : false
   });
 });
+
+
+
+
