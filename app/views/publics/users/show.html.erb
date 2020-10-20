@@ -4,71 +4,70 @@
 	</div>
 
 	<div class="col-xs-3">
-		<h3><strong>ユーザー情報</strong></h3>
-		<table class="table table-hover table-bordered">
-			<tr><%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, fallback: "no_image2.jpg") %></tr>
-			<tr>
-				<th class="info user-form">ユーザー名</th>
-				<th class="text-center"><%= @user.name %></th>
-			</tr>
-			<tr>
-				<th class="info user-form">メールアドレス</th>
-				<th class="text-center"><%= @user.email %></th>
-			</tr>
-		</table>
-		<%= link_to " 編集", edit_users_path, class: "glyphicon glyphicon-wrench btn btn-success btn-base-2" %>
-		<%= link_to " パスワードの変更", edit_user_password_path, class: "glyphicon glyphicon-cog btn btn-warning pull-right btn-base-2" %>
+		<h3><i class="fas fa-user-tie"></i><strong class="underline-base-1">プロフィール</strong></h3>
+			<div><%= attachment_image_tag(@user, :profile_image, size: "100x100", class: "img-circle center-block iconimg-base-1", fallback: "no_image2.jpg") %>
+			</div>
+		  <div class="text-center fontweight-base-1 margintop-base-1"><%= @user.name %></div>
+			<div class="text-center fontsize-base-2"><%= @user.email %></div>
+      <div>
+        <%= link_to edit_users_path, class: "btn btn-success btn-base-1 margintop-base-1" do %>
+          <span><i class="fas fa-user-edit"></i> 編集</span>
+        <% end %>
+        <%= link_to edit_user_registration_path, class: "btn btn-warning pull-right btn-base-1 margintop-base-1" do %>
+          <span><i class="fas fa-user-cog"></i> パスワード変更</span>
+        <% end %>
+      </div>
 	</div>
 
 	<div class="col-xs-9">
 		<h3><strong>自分の投稿</strong></h3>
-		<table class="table table-hover table-bordered">
-			<thead>
-				<tr class="info">
-					<th class="image-form"></th>
-					<th class="text-center">タイトル</th>
-					<th class="text-center">ジャンル</th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<% @user.posts.each do |post| %>
-				<tr>
-					<td class="text-center">
-						<%= attachment_image_tag(post, :post_image, size: "60x40", fallback: "no_image.jpg") %>
-					</td>
-					<td class="text-center"><%= link_to post.title, post_path(post) %></td>
-					<td class="text-center"><%= post.genre.name %></td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
+			<% @user.posts.each do |post| %>
+      <% if post.genre.genre_status == true %>
+				<div class="col-xs-3 form-base-1 margin-base-1">
+        	<div class="postimage">
+          	<%= attachment_image_tag(post, :post_image, size: "150x120", fallback: 'no_image.jpg') %>
+        	</div>
+        	<div class="margintop-base-1">
+          	<%= attachment_image_tag(post.user, :profile_image, size: "50x50", class: "img-circle iconimg-base-1 ", fallback: 'no_image.jpg') %>
+          	<span class="username"><i class="fas fa-user-tie"></i><%= post.user.name %></span>
+        	</div>
+        	<span class="genre">
+          	<%= post.genre.name %>
+        	</span>
+        	<%= link_to post_path(post.id), :style=>"color: tomato;" do %>
+          	<p class="title">
+            	<span><%= post.title %></span>
+          	</p>
+        	<% end %>
+      	</div>
+      <% end %>
+      <% end %>
+  </div>
 </div>
 
 <div class="row">
-	<div class="col-xs-12 favorite-group">
+	<div class="col-xs-12">
 		<h3><strong>お気に入り</strong></h3>
-			<table class="table table-hover table-bordered">
-				<thead>
-					<tr class="info">
-						<th class="image-form2"></th>
-						<th class="text-center favorite-font">タイトル</th>
-						<th class="text-center favorite-font">ジャンル</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<% @favorites.each do |favorite| %>
-					<tr>
-						<td class="text-center">
-							<%= attachment_image_tag(favorite.post, :post_image, size: "240x160", fallback: "no_image.jpg") %>
-						</td>
-						<td class="text-center favorite-font"><%= link_to favorite.post.title, post_path(favorite.post) %></td>
-						<td class="text-center favorite-font"><%= favorite.post.genre.name %></td>
-					</tr>
-					<% end %>
-				</tbody>
-			</table>
-	</div>
+			<% @favorites.each do |favorite| %>
+      <% if favorite.post.genre.genre_status == true %>
+				<div class="col-xs-3 form-base-1 margin-base-2">
+        	<div class="postimage">
+          	<%= attachment_image_tag(favorite.post, :post_image, size: "220x180", fallback: 'no_image.jpg') %>
+        	</div>
+        	<div class="margintop-base-1">
+          	<%= attachment_image_tag(favorite.post.user, :profile_image, size: "50x50", class: "img-circle iconimg-base-1 ", fallback: 'no_image.jpg') %>
+          	<span class="username"><i class="fas fa-user"></i><%= favorite.post.user.name %></span>
+        	</div>
+        	<span class="genre">
+          	<%= favorite.post.genre.name %>
+        	</span>
+        	<%= link_to post_path(favorite.post.id), :style=>"color: tomato;" do %>
+          	<p class="title">
+            	<span><%= favorite.post.title %></span>
+          	</p>
+        	<% end %>
+      	</div>
+      <% end %>
+      <% end %>
+  </div>
 </div>

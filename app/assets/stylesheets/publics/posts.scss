@@ -3,24 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* 投稿一覧 */
-.post-list {
-	display: flex;
-	align-content: space-around;
-}
 .post-item {
+  margin: 0 6em 2em 0;
 	padding: 2em;
 	background: #fff;
   border:#ddd 5px solid;
   border-radius: 10px;
-  filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.6));
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.6));
 }
-.post-item-image{
+.post-item .postimage{
+  background-size:cover;
 	width:100%;
   height:auto;
   border-radius:30px 0;
   overflow: hidden;
 }
-.post-item-genre {
+.post-item .genre {
   margin-top: 10px;
   display: inline-block;
   padding: 0.3em 0.5em;
@@ -33,20 +31,21 @@
   font-weight: bold;
   text-shadow: -1px -1px rgba(255, 255, 255, 0.44), 1px 1px rgba(0, 0, 0, 0.38);
 }
-.post-item-title {
+.post-item .title {
 	display:block;
+  font-weight: bold;
   height:50px;
   margin:1em 0;
   line-height:50px;
   background:tomato;
   color:#fff;
-  border-radius:70px / 45px;
-  box-shadow:0 5px 0 gold;
+  border-radius: 70px 20px / 30px;
+  box-shadow:0 3px 0 gold;
   text-decoration:none;
   text-align:center;
   filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.6));
 }
-.post-item-title:hover {
+.post-item .title:hover {
   transform: translateY(4px);
   transition: all 0.3s;
   filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2));
@@ -59,9 +58,9 @@
 	background: #fff;
   border:#ddd 5px solid;
   border-radius: 10px;
-  filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.6));
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.6));
 }
-.post-image {
+.review-postimage {
   margin-top: 10px;
 	width:100%;
   height:auto;
@@ -73,7 +72,7 @@
   background-size: cover;
   height: 460px;
 }
-.post-body-title {
+.post-body .title {
 	display:block;
 	width:90%;
   height:50px;
@@ -82,12 +81,12 @@
   background-color:	#FFF;
   color:#000;
   border-radius:20px;
-  box-shadow:0 5px 2px #00FF99;
+  box-shadow:0 3px 2px #00FF99;
   text-decoration:none;
   text-align:center;
-  font-weight: 700;
+  font-weight: bold;
 }
-.post-body-genre {
+.post-body .genre {
 	margin: 5px 0 0 40px;
   display: inline-block;
   padding: 0.4em 0.4em;
@@ -100,24 +99,13 @@
   font-weight: bold;
   text-shadow: -1px -1px rgba(255, 255, 255, 0.44), 1px 1px rgba(0, 0, 0, 0.38);
 }
-.post-body-content {
+.post-body .content {
 	margin: 10px 0 0 30px;
 }
 
-/* 投稿詳細のいいねとレビューのバッチ */
-.badge {
-  margin: 5px 0 10px 0;
-  filter: drop-shadow(3px 3px 4px rgba(0,0,0,0.6));
-}
-.badge:hover {
-  transform: translateY(4px);
-  transition: all 0.3s;
-  filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2));
-  border-bottom: none;
-}
-/* 投稿詳細の新規レビュー */
-.new-review {
-  height: 400px;
+/* 新規フォーム */
+.newform-base-1 {
+  height: 470px;
   position: relative;
   background: #fff0cd;
   box-shadow: 0px 0px 0px 5px #fff0cd;
@@ -126,7 +114,7 @@
   color: #454545;
 }
 
-.new-review:after {
+.newform-base-1:after {
   position: absolute;
   content: '';
   right: -7px;
@@ -137,28 +125,124 @@
   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
 }
 
+.newform-base-2 {
+  height: 470px;
+  position: relative;
+  background: #CCFFFF;
+  box-shadow: 0px 0px 0px 5px #CCFFFF;
+  border: dashed 2px white;
+  padding: 0.2em 0.5em;
+  color: #454545;
+}
+.newform-base-2:after {
+  position: absolute;
+  content: '';
+  right: -7px;
+  top: -7px;
+  border-width: 0 45px 45px 0;
+  border-style: solid;
+  border-color: #00ECFF #fff #00ECFF;
+  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
+}
 
+.newform-base-3 {
+  height: 470px;
+  position: relative;
+  background: #AEFFBD;
+  box-shadow: 0px 0px 0px 5px #AEFFBD;
+  border: dashed 2px white;
+  padding: 0.2em 0.5em;
+  color: #454545;
+}
+.newform-base-3:after {
+  position: absolute;
+  content: '';
+  right: -7px;
+  top: -7px;
+  border-width: 0 45px 45px 0;
+  border-style: solid;
+  border-color: #2DFF57 #fff #2DFF57;
+  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+/* 投稿詳細の新規レビュー */
 .form-review {
   display: flex;
   margin-top: 30px;
 }
-.form-review-label1 {
+.form-review .label-1 {
   width: 100px;
-  padding-right: 20px;
-  margin-right: 100px;
 }
-.form-review-label2 {
-  width: 100px;
+.form-review .text {
+  margin-left: 100px;
 }
 #star {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
+.star-label {
+  width: 100px;
+  padding-right: 20px;
+  margin-right: 100px;
+}
 
-.form-review-text {
-  width: 550px;
-  margin-left: 100px;
+/* ランキング一覧 */
+.rank-detail {
+  padding: 2em;
+  background-image: url(/assets/frame00402.jpg);
+  background-size: cover;
+  height: 820px;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.6));
+}
+.review-rankimage {
+  margin-top: 10px;
+  width:100%;
+  height:auto;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.rank-body .title {
+  display:block;
+  width:90%;
+  height:50px;
+  margin:30px 0 0 25px;
+  line-height:50px;
+  background-color: #FFF;
+  color:#000;
+  border-radius:20px;
+  box-shadow:0 3px 2px #00FF99;
+  text-decoration:none;
+  text-align:center;
+  font-weight: bold;
+}
+.rank-body .genre {
+  margin: 5px 0 0 40px;
+  display: inline-block;
+  padding: 0.4em 0.4em;
+  text-decoration: none;
+  background: #668ad8;/*ボタン色*/
+  color: #668ad8;/*ボタン色と同じに*/
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #627295;
+  border-radius: 3px;/*角の丸み*/
+  font-weight: bold;
+  text-shadow: -1px -1px rgba(255, 255, 255, 0.44), 1px 1px rgba(0, 0, 0, 0.38);
+}
+.rank-body .content {
+  margin: 10px 0 0 30px;
+}
+
+
+/* 新規投稿のプレビュー */
+.img_field {
+  display: none;
+}
+.img_prev:hover {
+  cursor: pointer; 
+  opacity: 0.7;
+  transform: scale(1.01, 1.01);
 }
 
 /* 検索一覧 */

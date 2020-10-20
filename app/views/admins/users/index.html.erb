@@ -1,2 +1,45 @@
-<h1>Admins::Users#index</h1>
-<p>Find me in app/views/admins/users/index.html.erb</p>
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <h2>ユーザー一覧</h2>
+  </div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12 text-center">
+		<table class="table table-hover table-inverse">
+			<thead>
+				<tr class="info">
+					<th></th>
+					<th>会員ID</th>
+					<th>名前</th>
+					<th>メールアドレス</th>
+					<th>会員ステータス</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @users.each do |user| %>
+					<tr class="form-base-4">
+						<td><%= attachment_image_tag(user, :profile_image, :fill, 100, 100, class: "faceicon-img", fallback: "no_image2.jpg") %></td>
+						<td><%= user.id %></td>
+						<td><%= user.name %></td>
+						<td><%= user.email %></td>
+						<td>
+							<% if user.user_status %>
+								<span class="text-invalid">退会済み</span>	
+							<% else %>
+								<span class="text-active">有効</span>
+							<% end %>
+						</td>
+						<td>
+							<%= link_to admins_user_path(user), class: "btn btn-primary btn-base-3" do %>
+								<span><i class="fas fa-search-plus"></i> 詳細</span>
+      				<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<%= paginate @users %>
+	</div>
+</div>
