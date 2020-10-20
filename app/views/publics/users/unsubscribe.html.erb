@@ -5,7 +5,11 @@
       <br>これまでの投稿履歴、お気に入り履歴が閲覧できなくなります。
       <br>退会する場合は「退会する」をクリックしてください。
     	</h4></br></br>
-   		<%= link_to "退会しない",users_path,class: "glyphicon glyphicon-home btn btn-primary" %>
-    	<%= link_to "退会する", users_withdraw_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "glyphicon glyphicon-ok btn btn-danger col-xs-offset-3" %>
+        <%= link_to users_path, class: "btn btn-primary btn-lg btn-base-1" do %>
+          <span><i class="far fa-smile"></i> 退会しない</span>
+        <% end %>
+        <%= link_to users_withdraw_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger btn-lg btn-base-1 col-xs-offset-3" do %>
+          <span><i class="far fa-frown"></i> 退会する</span>
+        <% end %>
   	</div>
 	</div>

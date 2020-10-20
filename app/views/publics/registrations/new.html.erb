@@ -25,6 +25,9 @@
               <label class="control-label sr-only" for="inputPassword">Password</label>
               <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"パスワード" %>
               <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
+              <% if @minimum_password_length %>
+                <em><%= @minimum_password_length %> 文字以上</em>
+              <% end %>
             </div>
 
             <div class="form-group has-icon">
@@ -33,7 +36,7 @@
               <span class="fa fa-check-circle-o form-control-icon" aria-hidden="true"></span>
             </div>
 
-            <%= f.submit "新規登録", class:"btn btn-lg btn-block btn-base-2 mt-20" %>
+            <%= f.submit "新規登録", class:"btn btn-lg btn-block btn-base-1 margintop-base-1" %>
             <% end %></br></br>
 
             <div class="row">

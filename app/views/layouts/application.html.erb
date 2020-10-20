@@ -5,8 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <script src="https://kit.fontawesome.com/da6e295665.js" crossorigin="anonymous"></script>
   </head>
 
@@ -15,31 +15,95 @@
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
           <% if admin_signed_in? %>
-            <h3><%= link_to "BEN-TO", admins_top_path %></h3>
+            <h3><%= link_to "BEN-TO", admins_top_path, :style=>"color: white; text-decoration:none;" %></h3>
           <% else %>
-            <h3><%= link_to "BEN-TO", root_path %></h3>
+            <h3><%= link_to "BEN-TO", root_path, :style=>"color: white; text-decoration:none;" %></h3>
           <% end %>
         </nav>
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li><%= link_to 'マイページ', users_path, class: 'glyphicon glyphicon-user' %></li>
-              <li><%= link_to '新規投稿', new_post_path, class: 'glyphicon glyphicon-pencil' %></li>
-              <li><%= link_to '投稿一覧', posts_path, class: 'glyphicon glyphicon-list' %></li>
-              <li><%= link_to '検索', search_posts_path, class: 'glyphicon glyphicon-search' %></li>
-              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out' %></li>
+              <li>
+                <%= link_to users_path do %>
+                  <span><i class="fas fa-user-tie"></i> マイページ</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_post_path do %>
+                  <span><i class="fas fa-feather"></i> 新規投稿</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to posts_path do %>
+                  <span><i class="fas fa-list-ul"></i> 投稿一覧</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to ranking_posts_path do %>
+                  <span><i class="fas fa-crown"></i> ランキング</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to search_posts_path do %>
+                  <span><i class="fas fa-search"></i> 検索</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <span><i class="fas fa-sign-out-alt"></i> ログアウト</span>
+                <% end %>
+              </li>
             <% elsif admin_signed_in? %>
-              <li><%= link_to '投稿一覧', admins_posts_path, class: 'glyphicon glyphicon-list' %></li>
-              <li><%= link_to '会員一覧', admins_users_path, class: 'glyphicon glyphicon-user' %></li>
-              <li><%= link_to 'ランキング一覧', ranking_admins_posts_path, class: 'glyphicon glyphicon-stats' %></li>
-              <li><%= link_to 'ジャンル一覧', admins_genres_path, class: 'glyphicon glyphicon-th-large' %></li>
-              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'glyphicon glyphicon-log-out' %></li>
+              <li>
+                <%= link_to admins_posts_path do %>
+                  <span><i class="fas fa-list-ul"></i> 投稿一覧</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to admins_users_path do %>
+                  <span><i class="fas fa-users"></i> 会員一覧</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to ranking_admins_posts_path do %>
+                  <span><i class="fas fa-crown"></i> ランキング一覧</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to admins_genres_path do %>
+                  <span><i class="fas fa-th-large"></i> ジャンル一覧</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_admin_session_path, method: :delete do %>
+                  <span><i class="fas fa-sign-out-alt"></i> ログアウト</span>
+                <% end %>
+              </li>
             <% else %>
-              <li><%= link_to 'About', about_path, class: 'glyphicon glyphicon-link' %></li>
-              <li><%= link_to 'サインアップ', new_user_registration_path, class: 'glyphicon glyphicon-edit' %></li>
-              <li><%= link_to 'ログイン', new_user_session_path, class: 'glyphicon glyphicon-log-in' %></li>
-              <li><%= link_to '投稿一覧', posts_path, class: 'glyphicon glyphicon-list' %></li>
-              <li><%= link_to '検索', search_posts_path, class: 'glyphicon glyphicon-search' %></li>
+              <li>
+                <%= link_to about_path do %>
+                  <span><i class="fas fa-info-circle"></i> about</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_registration_path do %>
+                  <span><i class="fas fa-user-plus"></i> 新規登録</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_session_path do %>
+                  <span><i class="fas fa-sign-in-alt"></i> ログイン</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to posts_path do %>
+                  <span><i class="fas fa-list-ul"></i> 投稿一覧</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to search_posts_path do %>
+                  <span><i class="fas fa-search"></i> 検索</span>
+                <% end %>
             <% end %>
           </ul>
         </nav>
@@ -53,11 +117,10 @@
       </div>
       <%= yield %>
     </div>
-    <footer>
+    <footer class="navbar">
       <div class="container">
         <div class="row">
-          <div class="col-xs-3 col-xs-offset-9">
-            <p>CopyRight</p>
+          <div class="col-xs-12">
           </div>
         </div>
       </div>

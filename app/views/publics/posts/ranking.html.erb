@@ -1,2 +1,178 @@
-<h1>Publics::Posts#ranking</h1>
-<p>Find me in app/views/publics/posts/ranking.html.erb</p>
+<!-- 他のページに影響がでた為こちらに記述 -->
+<style>
+.checklist .bookmark {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  margin-bottom: 10px;
+}
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+a.btn-tag {
+  padding: 1rem 1.5rem 0.5rem 50px;
+}
+a.btn-tag:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 100%;
+  content: "";
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+a.btn-tag--favorite {
+  color: #fff;
+  background: #f39800;
+}
+a.btn-tag--favorite:before {
+  background: #fff;
+}
+a.btn-tag--favorite i {
+  font-size: 120%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  padding: 1.2rem 0;
+  transition: all 0.3s;
+  text-align: center;
+  letter-spacing: 0;
+  opacity: 0.5;
+  color: #f39800;
+}
+a.btn-tag--favorite:hover {
+  background: #ffa50e;
+}
+a.btn-tag--favorite:hover i {
+  transform: scale(1.1);
+  opacity: 1;
+}
+/*投稿詳細のいいねとレビューのバッチ*/
+.badge-1 {
+  margin: 5px 0 10px 0;
+  filter: drop-shadow(3px 3px 4px rgba(0,0,0,0.6));
+}
+.badge-1:hover {
+  transform: translateY(4px);
+  transition: all 0.3s;
+  filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2));
+  border-bottom: none;
+}
+</style>
+<% @all_ranks.each.with_index(1) do |ranking, i| %>
+  <% if ranking.genre.genre_status == true %>
+    <div class="row rank-detail margintop-base-2">
+      <div class="col-xs-12 margintop-base-3">
+        <div class="col-xs-3 col-xs-offset-2">
+        <% if i == 1 %>
+          <h1><i class="fas fa-crown"></i>第<%= i %>位<i class="fas fa-crown"></i></h1>
+        <% elsif i == 2 %>
+          <h2><i class="fas fa-chess-queen"></i>第<%= i %>位<i class="fas fa-chess-queen"></i></h2>
+        <% elsif i == 3 %>
+          <h3><i class="fas fa-chess-rook"></i>第<%= i %>位<i class="fas fa-chess-rook"></i></h3>
+        <% else %>
+          <h4><i class="fas fa-chess-pawn"></i>第<%= i %>位<i class="fas fa-chess-pawn"></i></h4>
+        <% end %>
+
+        <% if ranking.user != current_user %>
+          <div class="checklist">
+          <!-- お気に入り -->
+            <div class="bookmark">
+              <% if ranking.favorited_by?(current_user) %>
+                <a>
+                  <%= link_to post_favorites_path(ranking), class: 'btn btn-tag btn-tag--favorite', method: :delete do %>
+                    <i class="fas fa-star"></i>お気に入りから外す
+                  <% end %>
+                </a>
+              <% else %>
+                <a>
+                  <%= link_to post_favorites_path(ranking), class: 'btn btn-tag btn-tag--favorite', method: :post do %>
+                    <i class="far fa-star"></i>お気に入り登録する
+                  <% end %>
+                </a>
+              <% end %>
+            </div>
+            <!-- イイね -->
+            <div class="good">
+              <% if ranking.gooded_by?(current_user) %>
+                <%= link_to post_goods_path(ranking), :style=>"color: white;", method: :delete do %>
+                  <span class="glyphicon glyphicon-heart" style="color: red;"></span>
+                  <span class="badge badge-1"><%= ranking.goods.count %>　イイね</span>
+                <% end %>
+              <% else %>
+                <%= link_to post_goods_path(ranking), :style=>"color: white;", method: :post do %>
+                  <span class="glyphicon glyphicon-heart-empty" style="color: red;"></span>
+                  <span class="badge badge-1"><%= ranking.goods.count %>　イイね</span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% else %>
+          <!-- イイね -->
+          <div class="good">
+            <span class="glyphicon glyphicon-heart" style="color: red;"></span>
+            <span class="badge disabled"><%= ranking.goods.count %>　イイね</span>
+          </div>
+        <% end %>
+        <!-- 評価 -->
+        <div class="review">
+          <%= link_to post_reviews_path(ranking), :style=>"color: white;" do %>
+            <span class="far fa-comment-dots" style="color: blue;"></span>
+            <span class="badge badge-1"><%= ranking.reviews.count %>　レビュー</span>
+          <% end %>
+          <!-- ここに☆評価を追加する -->
+          <div class="average-review">
+            <strong>総合評価：<%= @average_review %>点 | 平均</strong>
+          </div>
+            <span class="average-review-rating" data-score="<%= @average_review %>"></span>
+        </div>
+      </div>
+      <div class="col-xs-5 rank-body">
+        <h3 class="title btn-base-3">
+          <%= link_to post_path(ranking) do %>
+            <%= ranking.title %>
+          <% end %>
+        </h3>
+        <h4>
+          <span class="genre">
+            <%= ranking.genre.name %>
+          </span>
+        </h4>
+        <div class="review-postimage">
+          <%= link_to post_path(ranking) do %>
+            <%= attachment_image_tag(ranking, :post_image, size: "440x320", fallback: "no_image.jpg") %>
+          <% end %>
+        </div>
+      </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
