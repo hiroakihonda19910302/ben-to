@@ -4,13 +4,13 @@ class Publics::PostsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.where(is_active: true)
     if params[:search] != nil
       @posts = Post.where(genre_id: params[:search])
     elsif params[:title_search] != nil
       @posts = Post.where('title LIKE ?', "%#{params[:title_search]}%")
     else
-      @posts = Post.all
+      @posts = Post.where(is_active: true)
     end
   end
 
@@ -33,6 +33,14 @@ class Publics::PostsController < ApplicationController
   end
 
   def ranking
+    @all_ranks = Post.find(Good.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    
+    #@post = Post.find(params[:id])
+    #if @post.reviews.blank?
+      #@average_review = 0
+    #else
+      #@average_review = @post.reviews.average(:rate).round(1)
+    #end
   end
 
   def search

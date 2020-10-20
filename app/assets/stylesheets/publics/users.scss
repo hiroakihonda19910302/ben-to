@@ -2,69 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* ログインページ、サインアップページ */
-.has-shadow {
-  filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.6));
-}
-.rounded {
-  border-radius: 30px !important;
-}
-section.slice {
-  padding: 46px 0;
-  position: relative;
-  /*背景色追加*/
-  background-color: #EAEBED;
-}
-section.slice-lg {
-  padding: 86px 0;
-}
-.has-icon {
-  position: relative;
-}
-.has-icon label.sr-only ~ .form-control-icon {
-  top: 11px;
-}
-.has-icon .form-control {
-  padding-left: 30px;
-}
-.form-user {
-  background-color: #ffffff;
-  color: #333333;
-  border: 1px solid #ecf0f1;
-  border-radius: 30px;
-}
-.form-user .form-header {
-  padding: 24px 0;
-  background-color: #ecf0f1;
-  border-bottom: 1px solid #ecf0f1;
-  border-radius: 30px 30px 0 0;
-}
-.form-user .form-header .form-header-title {
-  margin: 0;
-  padding: 0;
-  color: #282d33;
-}
-.form-user .form-body {
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 30px;
-}
-.form-control-icon {
-  color: rgba(0, 0, 0, 0.4);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  display: block;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
-  text-align: center;
-  pointer-events: none;
-}
-
-
-
 .favorite-group {
   margin-top: 30px;
 }

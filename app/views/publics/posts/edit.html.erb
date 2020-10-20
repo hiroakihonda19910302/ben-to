@@ -1,20 +1,11 @@
-<div class="row">
-	<div class="col-xs-12 text-center">
-		<h2>投稿編集</h2>
-	</div>
-</div>
-
-<div class="row">
-	<%= form_for(@post, url: post_path, method: :patch, class: "form-horizontal") do |f| %>
+<div class="row ">
+	<div class="col-xs-12 newform-base-2">
+		<h2 class="text-center">投稿編集</h2>
+	  <%= form_for(@post, url: post_path, method: :patch, class: "form-horizontal") do |f| %>
 		<div class="col-xs-5">
-			<div class="img_field">
-				<%= attachment_image_tag(@post, :post_image, size: "380x300") %>
-			</div>
-      <div class="form-group">
-        <%= f.attachment_field :post_image, class: "post_image" %>
-      </div>
+				<%= attachment_image_tag(@post, :post_image, size: "340x260", onClick: "$('.img_field').click()", class: 'center-block img-thumbnail img-responsive img_prev') %>
+        <div class="margintop-base-1"><%= f.attachment_field :post_image, class: "img_field pull-right" %></div>
     </div>
-
     <div class="col-xs-7">
     	<div class="form-group">
   			<h4><%= f.label :"ジャンル", class: "control-label" %></h4>
@@ -28,11 +19,12 @@
 			</div></br></br>
 			<div class="form-group">
   			<h4><%= f.label :"本文", class: "control-label" %></h4>
-  			<%= f.text_area :body, rows: 6, class: "col-xs-12 form-control" %>
+  			<%= f.text_area :body, rows: 5, class: "col-xs-12 form-control" %>
 			</div>
     	<div class="actions">
-        <%= f.submit "変更を保存する", class: "btn btn-success btn-lg pull-right btn-base-2" %>
+        <%= f.submit "変更を保存する", class: "btn btn-success btn-lg pull-right btn-base-3 margintop-base-1" %>
       </div>
   	</div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

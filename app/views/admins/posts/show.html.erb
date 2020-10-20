@@ -1,2 +1,92 @@
-<h1>Admins::Posts#show</h1>
-<p>Find me in app/views/admins/posts/show.html.erb</p>
+<div class='row post-detail'>
+	<div class="col-xs-5">
+    <div class="checklist">
+      <!-- イイね -->
+      <div class="good">
+        <span class="glyphicon glyphicon-heart" style="color: red;"></span>
+        <span class="badge"><%= @post.goods.count %>　イイね</span>
+      </div>
+    	<!-- 評価 -->
+    	<div class="review">
+        <span class="far fa-comment-dots" style="color: blue;"></span>
+        <span class="badge"><%= @post.reviews.count %>　レビュー</span>
+      </div>
+      <!-- ここに☆評価を追加する -->
+      <div class="average-review">
+        <strong>総合評価：<%= @average_review %>点 | 平均</strong>
+      </div>
+      <span class="average-review-rating" data-score="<%= @average_review %>"></span>
+    </div>
+    <div class="admin-postimage margintop-base-1">
+      <%= attachment_image_tag(@post, :post_image, size: "360x260", fallback: "no_image.jpg") %>
+    </div>
+    <div class="form-base-3 margintop-base-1">
+      <div class="faceicon">
+        <%= attachment_image_tag(@post.user, :profile_image, :fill, 100, 100, class: "faceicon-img", fallback: "no_image2.jpg") %>
+        <p class="fontsize-base-1"><i class="fas fa-user"></i><%= @post.user.name %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-7 post-body">
+    <h3 class="title"><%= @post.title %></h3><br>
+    <h4>
+      <span class="genre">
+        <%= @post.genre.name %>
+      </span>
+    </h4>
+    <div class="col-xs-10 content"><%= @post.body %></div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class="col-xs-12 text-center">
+    <h2>レビュー一覧</h2>
+  </div>
+  <div class="col-xs-12">
+    <% @post.reviews.each do |review| %>
+    <div class="form-base-2">
+      <div class="faceicon">
+        <%= attachment_image_tag(review.user, :profile_image, :fill, 100, 100, class: "faceicon-img", fallback: "no_image2.jpg") %>
+        <p class="fas fa-user fontsize-base-1"><%= review.user.name %></p>
+      </div>
+      <div class="chatting">
+        <div class="says-1">
+          <p class="fontweight-base-1"><%= l review.created_at, format: :default %></p>
+          <p class="fontweight-base-1">評価：<%= review.rate %></p>
+          <p class="review-rating" data-score="<%= review.rate %>"></p>
+          <p class="fontweight-base-1"><%= review.title %></p>
+          <p class=""><%= review.review %></p>
+        </div>
+        <%= link_to admins_post_path(@post) do %>
+          <%= attachment_image_tag(review.post, :post_image, size: "150x150", class: "posticon-img", fallback: "no_image2.jpg") %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
+
+<script>
+  $('.review-rating').raty({
+    readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+</script>

@@ -1,2 +1,48 @@
-<h1>Admins::Posts#index</h1>
-<p>Find me in app/views/admins/posts/index.html.erb</p>
+<div class='row'>
+  <div class="col-xs-3">
+		<h3><span class="underline-base-1"><i class="fas fa-search"></i><strong>ジャンル</strong></h3>
+			<% @genres.each do |genre| %>
+        <% if genre.genre_status == true %>
+					<%= form_with(url: posts_path, method: :get, local: :true) do |f| %>
+						<div class="fontweight-base-1 margintop-base-1">
+          		<%= f.hidden_field :search, value:genre.id %>
+          		<%= f.submit genre.name, class: "genre_name_button" %>
+        		</div>
+      		<% end %>
+      	<% end %>
+      <% end %>
+      <div class="margintop-base-1">
+      	<%= link_to "⇒ すべての商品を見る", admins_posts_path, class: 'dark-blue-letter' %>
+    	</div>
+      <div class="pagination"><%= paginate(@genres) %></div>
+	</div>
+
+  <div class="col-xs-9 text-center">
+    <h2>
+      <span style="display: inline-block;">投稿一覧</span>
+    </h2>
+
+  	<% @posts.each do |post| %>
+    <% if post.genre.genre_status == true %>
+      <div class="col-xs-3 form-base-1">
+        <div class="postimage">
+          <%= attachment_image_tag(post, :post_image, size: "150x120", fallback: 'no_image.jpg') %>
+        </div>
+        <div class="margintop-base-1">
+          <%= attachment_image_tag(post.user, :profile_image, size: "50x50", class: "img-circle iconimg-base-1 ", fallback: 'no_image.jpg') %>
+          <span class="username"><i class="fas fa-user"></i><%= post.user.name %></span>
+        </div>
+        <span class="genre">
+          <%= post.genre.name %>
+        </span>
+        <%= link_to admins_post_path(post.id), :style=>"color: tomato;" do %>
+          <p class="title">
+            <span><%= post.title %></span>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  	<% end %>
+  </div>
+</div>
+
