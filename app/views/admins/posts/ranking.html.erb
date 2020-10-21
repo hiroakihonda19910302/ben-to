@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 text-center">
-    <h2>ランキング一覧</h2>
+    <h2 class="fontshadow-1"><strong>ランキング一覧</strong></h2>
   </div>
 </div>
 
@@ -19,7 +19,7 @@
 			</thead>
 			<tbody>
 				<% @all_ranks.each.with_index(1) do |ranking, i| %>
-					<tr class="form-base-4">
+					<tr class="form-4">
 						<td>第<%= i %>位</td>
 						<td><%= ranking.goods.count %></td>
 						<td>

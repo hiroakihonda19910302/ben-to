@@ -1,21 +1,26 @@
 <div class='row'>
 	<div class="col-xs-12 text-center">
-		<h2>レビュー一覧</h2>
+		<h2>
+      <span class="fontshadow-1"><strong>レビュー一覧</strong>
+    </h2>
 	</div>
 	<div class="col-xs-12">
 		<% @post.reviews.each do |review| %>
-		<div class="form-base-2">
+		<div class="form-2 animation-1">
   		<div class="faceicon">
     		<%= attachment_image_tag(review.user, :profile_image, :fill, 100, 100, class: "faceicon-img", fallback: "no_image2.jpg") %>
-    		<p class="fontsize-base-1"><i class="fas fa-user"></i><%= review.user.name %></p>
+    		<p class="fontsize-1"><i class="fas fa-user"></i><%= review.user.name %></p>
   		</div>
   		<div class="chatting">
     		<div class="says-1">
-    			<p class="fontweight-base-1"><%= l review.created_at, format: :default %></p>
-    			<p class="fontweight-base-1">評価：<%= review.rate %></p>
+    			<p class="fontweight-1"><%= l review.created_at, format: :default %></p>
+    			<p class="fontweight-1">評価：<%= review.rate %></p>
       		<p class="review-rating" data-score="<%= review.rate %>"></p>
-					<p class="fontweight-base-1"><%= review.title %></p>
+					<p class="fontweight-1"><%= review.title %></p>
 					<p class=""><%= review.review %></p>
+          <%= link_to post_path(@post) do %>
+            <%= attachment_image_tag(review.post, :post_image, size: "100x100", class: "posticon-img", fallback: "no_image2.jpg") %>
+          <% end %>
 					<% if review.user == current_user %>
 						<div class='review-group-destroy'>
               <%= link_to post_review_path(review.post, review), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "destroy-button pull-right" do %>
@@ -24,9 +29,7 @@
 						</div>
 					<% end %>
 				</div>
-        <%= link_to post_path(@post) do %>
-    		  <%= attachment_image_tag(review.post, :post_image, size: "150x150", class: "posticon-img", fallback: "no_image2.jpg") %>
-        <% end %>
+        
   		</div>
 		</div>
 		<% end %>
