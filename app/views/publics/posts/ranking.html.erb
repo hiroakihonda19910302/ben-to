@@ -77,11 +77,11 @@ a.btn-tag--favorite:hover i {
 </style>
 <% @all_ranks.each.with_index(1) do |ranking, i| %>
   <% if ranking.genre.genre_status == true %>
-    <div class="row rank-detail margintop-base-2">
-      <div class="col-xs-12 margintop-base-3">
+    <div class="row rank-detail animation-1 mt-2">
+      <div class="col-xs-12 mt-3">
         <div class="col-xs-3 col-xs-offset-2">
         <% if i == 1 %>
-          <h1><i class="fas fa-crown"></i>第<%= i %>位<i class="fas fa-crown"></i></h1>
+          <h1><i class="fas fa-crown"></i><strong>第<%= i %>位</strong><i class="fas fa-crown"></i></h1>
         <% elsif i == 2 %>
           <h2><i class="fas fa-chess-queen"></i>第<%= i %>位<i class="fas fa-chess-queen"></i></h2>
         <% elsif i == 3 %>
@@ -138,13 +138,18 @@ a.btn-tag--favorite:hover i {
           <% end %>
           <!-- ここに☆評価を追加する -->
           <div class="average-review">
-            <strong>総合評価：<%= @average_review %>点 | 平均</strong>
+            <% if ranking.reviews.blank? %>
+                <% average_review = 0 %>
+            <% else %>
+                <% average_review = ranking.reviews.average(:rate).round(1) %>
+            <% end %>
+            <strong>総合評価：<%= average_review %>点 | 平均</strong>
           </div>
-            <span class="average-review-rating" data-score="<%= @average_review %>"></span>
+            <span class="average-review-rating" data-score="<%= average_review %>"></span>
         </div>
       </div>
       <div class="col-xs-5 rank-body">
-        <h3 class="title btn-base-3">
+        <h3 class="title btn-3 fontshadow-1">
           <%= link_to post_path(ranking) do %>
             <%= ranking.title %>
           <% end %>

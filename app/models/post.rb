@@ -7,7 +7,7 @@ class Post < ApplicationRecord
 
 	attachment :post_image, destroy: false
 
-	validates :title, presence: true, length: {maximum:20,minimum:2}
+	validates :title, presence: true, length: {maximum:15,minimum:2}
 	validates :body, presence: true, length: {maximum:200,minimum:2}
 
 	def favorited_by?(user)

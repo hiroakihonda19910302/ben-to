@@ -11,16 +11,16 @@
 <div id="new">
 	<div class="row">
 		<div class="col-xs-12">
-			<h1><i class="far fa-lightbulb"></i> 新着</h1>
+			<h1><i class="far fa-lightbulb"></i><strong class="underline-1 fontshadow-1">新着</strong></h1>
 		</div>
 		  <% @posts.each do |post| %>
     		<% if post.genre.genre_status == true %>
-      		<div class="col-xs-3 post-item">
+      		<div class="col-xs-3 post-item js-animation">
         		<div class="postimage">
           		<%= attachment_image_tag(post, :post_image, size: "250x210", fallback: 'no_image.jpg') %>
         		</div>
-        		<div class="margintop-base-1">
-          		<%= attachment_image_tag(post.user, :profile_image, size: "50x50", class: "img-circle iconimg-base-1 ", fallback: 'no_image.jpg') %>
+        		<div class="mt-1">
+          		<%= attachment_image_tag(post.user, :profile_image, size: "50x50", class: "img-circle iconimg-1 ", fallback: 'no_image.jpg') %>
           		<span class="username"><i class="fas fa-user"></i><%= post.user.name %></span>
         		</div>
         		<span class="genre">
@@ -48,26 +48,26 @@
 <div id="ranking">
 	<div class="row">
 		<div class="col-xs-12">
-			<h1><i class="fas fa-crown"></i> ランキング</h1>
+			<h1><i class="fas fa-crown"></i><strong class="underline-1 fontshadow-1">ランキング</strong></h1>
 		</div>
 		  <% @all_ranks.each.with_index(1) do |ranking, i| %>
     		<% if ranking.genre.genre_status == true %>
-      		<div class="col-xs-3 post-item">
+      		<div class="col-xs-3 post-item js-animation">
       			<div class="">
       				<% if i == 1 %>
-          			<h3><i class="fas fa-crown"></i>第<%= i %>位<i class="fas fa-crown"></i></h3>
+          			<h2><i class="fas fa-crown"></i><strong>第<%= i %>位</strong><i class="fas fa-crown"></i></h2>
         			<% elsif i == 2 %>
-          			<h3><i class="fas fa-chess-queen"></i>第<%= i %>位<i class="fas fa-chess-queen"></i></h3>
+          			<h2><i class="fas fa-chess-queen"></i>第<%= i %>位<i class="fas fa-chess-queen"></i></h2>
         			<% elsif i == 3 %>
-          		  <h3><i class="fas fa-chess-rook"></i>第<%= i %>位<i class="fas fa-chess-rook"></i></h3>
+          		  <h2><i class="fas fa-chess-rook"></i>第<%= i %>位<i class="fas fa-chess-rook"></i></h2>
           		<% end %>
       			</div>
         		<div class="postimage">
           		<%= attachment_image_tag(ranking, :post_image, size: "250x210", fallback: 'no_image.jpg') %>
         		</div>
-        		<div class="margintop-base-1">
-          		<%= attachment_image_tag(ranking.user, :profile_image, size: "50x50", class: "img-circle iconimg-base-1 ", fallback: 'no_image.jpg') %>
-          		<span class="fas fa-user username"><%= ranking.user.name %></span>
+        		<div class="mt-1">
+          		<%= attachment_image_tag(ranking.user, :profile_image, size: "50x50", class: "img-circle iconimg-1 ", fallback: 'no_image.jpg') %>
+          		<span class="username"><i class="fas fa-user"></i><%= ranking.user.name %></span>
         		</div>
         		<span class="genre">
           		<%= ranking.genre.name %>
