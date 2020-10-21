@@ -17,19 +17,19 @@
       </div>
       <span class="average-review-rating" data-score="<%= @average_review %>"></span>
     </div>
-    <div class="admin-postimage margintop-base-1">
+    <div class="admin-postimage mt-1">
       <%= attachment_image_tag(@post, :post_image, size: "360x260", fallback: "no_image.jpg") %>
     </div>
-    <div class="form-base-3 margintop-base-1">
+    <div class="form-3 mt-1">
       <div class="faceicon">
         <%= attachment_image_tag(@post.user, :profile_image, :fill, 100, 100, class: "faceicon-img", fallback: "no_image2.jpg") %>
-        <p class="fontsize-base-1"><i class="fas fa-user"></i><%= @post.user.name %></p>
+        <p class="fontsize-1"><i class="fas fa-user"></i><%= @post.user.name %></p>
       </div>
     </div>
   </div>
 
   <div class="col-xs-7 post-body">
-    <h3 class="title"><%= @post.title %></h3><br>
+    <h3 class="title fontshadow-1"><%= @post.title %></h3><br>
     <h4>
       <span class="genre">
         <%= @post.genre.name %>
@@ -41,21 +41,21 @@
 
 <div class='row'>
   <div class="col-xs-12 text-center">
-    <h2>レビュー一覧</h2>
+    <h2 class="fontshadow-1"><strong>レビュー一覧</strong></h2>
   </div>
   <div class="col-xs-12">
     <% @post.reviews.each do |review| %>
-    <div class="form-base-2">
+    <div class="form-2">
       <div class="faceicon">
         <%= attachment_image_tag(review.user, :profile_image, :fill, 100, 100, class: "faceicon-img", fallback: "no_image2.jpg") %>
-        <p class="fas fa-user fontsize-base-1"><%= review.user.name %></p>
+        <p class="fas fa-user fontsize-1"><%= review.user.name %></p>
       </div>
       <div class="chatting">
         <div class="says-1">
-          <p class="fontweight-base-1"><%= l review.created_at, format: :default %></p>
-          <p class="fontweight-base-1">評価：<%= review.rate %></p>
+          <p class="fontweight-1"><%= l review.created_at, format: :default %></p>
+          <p class="fontweight-1">評価：<%= review.rate %></p>
           <p class="review-rating" data-score="<%= review.rate %>"></p>
-          <p class="fontweight-base-1"><%= review.title %></p>
+          <p class="fontweight-1"><%= review.title %></p>
           <p class=""><%= review.review %></p>
         </div>
         <%= link_to admins_post_path(@post) do %>

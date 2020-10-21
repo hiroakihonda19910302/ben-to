@@ -3,7 +3,8 @@ class Publics::UsersController < ApplicationController
   before_action :set_user
 
   def show
-    @favorites = Favorite.where(user_id: current_user.id)
+    @favorites = Favorite.where(user_id: current_user.id).page(params[:page]).per(9)
+    @posts = Post.where(user_id: current_user.id).page(params[:page]).per(6)
   end
 
   def edit

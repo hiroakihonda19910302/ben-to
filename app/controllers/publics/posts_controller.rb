@@ -1,16 +1,16 @@
 class Publics::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search]
-  before_action :set_genres, only: [:new, :edit, :index, :create, :update, :search]
+  before_action :set_genres, only: [:new, :edit, :index, :create, :update]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.where(is_active: true)
+    @posts = Post.where(is_active: true).order(created_at: :desc).page(params[:page]).per(9)
     if params[:search] != nil
-      @posts = Post.where(genre_id: params[:search])
+      @posts = Post.where(genre_id: params[:search]).order(created_at: :desc).page(params[:page]).per(9)
     elsif params[:title_search] != nil
-      @posts = Post.where('title LIKE ?', "%#{params[:title_search]}%")
+      @posts = Post.where('title LIKE ?', "%#{params[:title_search]}%").order(created_at: :desc).page(params[:page]).per(9)
     else
-      @posts = Post.where(is_active: true)
+      @posts = Post.where(is_active: true).order(created_at: :desc).page(params[:page]).per(9)
     end
   end
 
@@ -34,16 +34,10 @@ class Publics::PostsController < ApplicationController
 
   def ranking
     @all_ranks = Post.find(Good.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
-    
-    #@post = Post.find(params[:id])
-    #if @post.reviews.blank?
-      #@average_review = 0
-    #else
-      #@average_review = @post.reviews.average(:rate).round(1)
-    #end
   end
 
   def search
+    @genres = Genre.where(genre_status: true).page(params[:page]).per(12)
   end
 
   def create

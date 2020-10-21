@@ -103,67 +103,6 @@
 	margin: 10px 0 0 30px;
 }
 
-/* 新規フォーム */
-.newform-base-1 {
-  height: 470px;
-  position: relative;
-  background: #fff0cd;
-  box-shadow: 0px 0px 0px 5px #fff0cd;
-  border: dashed 2px white;
-  padding: 0.2em 0.5em;
-  color: #454545;
-}
-
-.newform-base-1:after {
-  position: absolute;
-  content: '';
-  right: -7px;
-  top: -7px;
-  border-width: 0 45px 45px 0;
-  border-style: solid;
-  border-color: #ffdb88 #fff #ffdb88;
-  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
-}
-
-.newform-base-2 {
-  height: 470px;
-  position: relative;
-  background: #CCFFFF;
-  box-shadow: 0px 0px 0px 5px #CCFFFF;
-  border: dashed 2px white;
-  padding: 0.2em 0.5em;
-  color: #454545;
-}
-.newform-base-2:after {
-  position: absolute;
-  content: '';
-  right: -7px;
-  top: -7px;
-  border-width: 0 45px 45px 0;
-  border-style: solid;
-  border-color: #00ECFF #fff #00ECFF;
-  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
-}
-
-.newform-base-3 {
-  height: 470px;
-  position: relative;
-  background: #AEFFBD;
-  box-shadow: 0px 0px 0px 5px #AEFFBD;
-  border: dashed 2px white;
-  padding: 0.2em 0.5em;
-  color: #454545;
-}
-.newform-base-3:after {
-  position: absolute;
-  content: '';
-  right: -7px;
-  top: -7px;
-  border-width: 0 45px 45px 0;
-  border-style: solid;
-  border-color: #2DFF57 #fff #2DFF57;
-  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
-}
 
 /* 投稿詳細の新規レビュー */
 .form-review {
@@ -233,22 +172,4 @@
 .rank-body .content {
   margin: 10px 0 0 30px;
 }
-
-
-/* 新規投稿のプレビュー */
-.img_field {
-  display: none;
-}
-.img_prev:hover {
-  cursor: pointer; 
-  opacity: 0.7;
-  transform: scale(1.01, 1.01);
-}
-
-/* 検索一覧 */
-.search-form {
-	width: 450px;
-	height: 35px;
-}
-
 

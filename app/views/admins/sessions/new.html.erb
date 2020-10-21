@@ -4,21 +4,21 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="form-user rounded has-shadow">
           <div class="form-header text-center">
-            <h2 class="form-header-title">管理者ログイン</h2>
+            <h2 class="form-header-title fontshadow-1">管理者ログイン</h2>
           </div>
           <div class="form-body">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="form-group has-icon">
+            <div class="form-group form-font has-icon">
               <label class="control-label sr-only" for="inputEmail">Email</label>
               <%= f.email_field :email, class:"form-control", id:"inputEmail", placeholder:"メールアドレス"%>
               <span class="fa fa-envelope form-control-icon" aria-hidden="true"></span>
             </div>
-            <div class="form-group has-icon">
+            <div class="form-group form-font has-icon">
               <label class="control-label sr-only" for="inputPassword">Password</label>
               <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"パスワード" %>
               <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
             </div>
-            <%= f.submit "ログイン", class:"btn btn-lg btn-block btn-base-1 margintop-base-1" %>
+            <%= f.submit "ログイン", class:"btn btn-lg btn-block btn-1 mt-1" %>
             <% end %>
           </div>
         </div>

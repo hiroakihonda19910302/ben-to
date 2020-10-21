@@ -14,11 +14,11 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
-          <% if admin_signed_in? %>
-            <h3><%= link_to "BEN-TO", admins_top_path, :style=>"color: white; text-decoration:none;" %></h3>
-          <% else %>
-            <h3><%= link_to "BEN-TO", root_path, :style=>"color: white; text-decoration:none;" %></h3>
-          <% end %>
+          <h3>
+            <%= link_to root_path, :style=>"color: white; text-decoration:none;" do %>
+              <i class="fas fa-magic"></i><strong>Ben-To</strong><i class="fas fa-magic"></i><span class="fontsize-3"> -便利グッズ投稿サイト-</span>
+            <% end %>
+          </h3>
         </nav>
         <nav>
           <ul class="nav navbar-nav navbar-right">

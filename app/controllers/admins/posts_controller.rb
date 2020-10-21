@@ -5,11 +5,11 @@ class Admins::PostsController < ApplicationController
     @genres = Genre.where(genre_status: true).page(params[:page]).per(10)
     @posts = Post.all
     if params[:search] != nil
-      @posts = Post.where(genre_id: params[:search])
+      @posts = Post.where(genre_id: params[:search]).order(created_at: :desc).page(params[:page]).per(9)
     elsif params[:title_search] != nil
-      @posts = Post.where('title LIKE ?', "%#{params[:title_search]}%")
+      @posts = Post.where('title LIKE ?', "%#{params[:title_search]}%").order(created_at: :desc).page(params[:page]).per(9)
     else
-      @posts = Post.all
+      @posts = Post.all.order(created_at: :desc).page(params[:page]).per(9)
     end
   end
 
@@ -29,6 +29,6 @@ class Admins::PostsController < ApplicationController
   end
 
   def ranking
-    @all_ranks = Post.find(Good.group(:post_id).order('count(post_id) desc').limit(30).pluck(:post_id))
+    @all_ranks = Post.find(Good.group(:post_id).order('count(post_id) desc').pluck(:post_id))
   end
 end
