@@ -68,7 +68,7 @@
 	overflow: hidden;
 }
 .post-body {
-  background-image: url(/assets/51865.jpg);
+  background-image: image-url("51865.jpg");
   background-size: cover;
   height: 460px;
 }
@@ -129,7 +129,7 @@
 /* ランキング一覧 */
 .rank-detail {
   padding: 2em;
-  background-image: url(/assets/frame00402.jpg);
+  background-image: image-url("frame00402.jpg");
   background-size: cover;
   height: 820px;
   filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.6));
