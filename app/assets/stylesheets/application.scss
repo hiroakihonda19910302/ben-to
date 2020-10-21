@@ -50,19 +50,19 @@ header, nav, body, h2, h3, h4, ul, li, table, tr, td, footer {
 }
 
 .image1 {
-  background-image: url(image1.jpg);
+  background-image: image-url("image1.jpg");
 }
 .image2 {
-  background-image: url(image2.jpg);
+  background-image: image-url("image2.jpg");
 }
 .image3 {
-  background-image: url(image3.jpg);
+  background-image: image-url("image3.jpg");
 }
 .image4 {
-  background-image: url(image4.jpg);
+  background-image: image-url("image4.jpg");
 }
 .image5 {
-  background-image: url(image5.jpg);
+  background-image: image-url("image5.jpg");
 }
 
 #container-img{
