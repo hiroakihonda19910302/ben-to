@@ -2,44 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
-        <div class="form-user rounded has-shadow">
-          <div class="form-header text-center">
-            <h2 class="form-header-title fontshadow-1"><%= @user.name %>さんの情報</h2>
-          </div>
-
-          <div class="mt-1">
-            <table class="table table-hover">
-            <tr><%= attachment_image_tag(@user, :profile_image, size: "100x100", class: "img-circle center-block iconimg-1", fallback: "no_image2.jpg") %></tr>
-            <tr class="center-block ml-2">
-              <td style="border:none;" class="col-xs-6">会員ID</td>
-              <td style="border:none;" class="col-xs-1"><%= @user.id %></td>
-              <td style="border:none;">
-                <% if @user.user_status? %>
-                  <span class="text-invalid">退会済み</span> 
-                <% else %>
-                  <span class="text-active">有効</span>
-                <% end %>
-              </td>
-            </tr>
-            <tr class="center-block ml-2">
-              <td style="border:none;" class="col-xs-6">ユーザー名</td>
-              <td style="border:none;" class="col-xs-4"><%= @user.name %></td>
-            </tr>
-            <tr class="center-block ml-2">
-              <td style="border:none;" class="col-xs-6">メールアドレス</td>
-              <td style="border:none;" class="col-xs-6"><%= @user.email %></td>
-            </tr>
-            </table>
-            <div class="center-position mgn-5">
-              <%= link_to admins_users_path, class: "btn-3 btn btn-info" do %>
-                <span><i class="fas fa-reply"></i> 一覧に戻る</span>
-              <% end %>
-              <%= link_to edit_admins_user_path(@user), class: "btn-3 btn btn-warning" do %>
-                <span><i class="fas fa-user-edit"></i> 編集</span>
-              <% end %>
-            </div>
-          </div>
-        </div>
+        <%= render 'admins/users/profile', user: @user %>
       </div>
     </div>
   </div>
