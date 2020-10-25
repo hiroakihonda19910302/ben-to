@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-xs-12 text-center">
+		<table class="table table-hover table-inverse table-bordered">
+			<thead>
+				<tr class="info">
+					<th>順位</th>
+					<th>イイね総数</th>
+					<th>タイトル</th>
+					<th>ジャンル</th>
+					<th>ユーザー名</th>
+					<th>投稿日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% all_ranks.each.with_index(1) do |post, i| %>
+					<tr class="form-4">
+						<td>第<%= i %>位</td>
+						<td><%= post.goods.count %></td>
+						<td>
+							<%= link_to admins_post_path(post.id) do %>
+            		<span><%= post.title %></span>
+            	<% end %>
+            </td>
+						<td><%= post.genre.name %></td>
+						<td><%= post.user.name %></td>
+						<td><%= l post.created_at, format: :default %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

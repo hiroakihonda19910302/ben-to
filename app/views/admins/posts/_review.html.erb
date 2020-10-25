@@ -1,0 +1,22 @@
+<!-- 評価 -->
+<div class="review">
+  <span class="far fa-comment-dots" style="color: blue;"></span>
+  <span class="badge"><%= post.reviews.count %>　レビュー</span>
+</div>
+<!-- ここに☆評価を追加する -->
+<div class="average-review">
+  <strong>総合評価：<%= average_review %>点 | 平均</strong>
+</div>
+<span class="average-review-rating" data-score="<%= average_review %>"></span>
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>

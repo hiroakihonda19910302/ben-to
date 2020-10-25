@@ -1,0 +1,11 @@
+<%= form_for(genre, url: admins_genres_path, method: :post) do |f| %>
+  <div>
+    <%= f.label :"ジャンル", class: "control-label" %>
+    <%= f.text_field :name %>
+    <%= f.radio_button :genre_status, true %>
+    <%= f.label :genre_status, "有効", {value: :true, style: "display: inline-block;"} %>
+    <%= f.radio_button :genre_status, false %>
+    <%= f.label :genre_status, "無効", {value: :false, style: "display: inline-block;"} %>
+    <%= f.submit "追加", class: "btn btn-info btn-3 mb-1" %>
+  </div>
+<% end %>

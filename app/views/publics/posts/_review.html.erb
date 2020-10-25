@@ -1,0 +1,42 @@
+<!-- 他のページに影響がでた為こちらに記述 投稿詳細のいいねとレビューのバッチ -->
+<style>
+.badge-1 {
+  margin: 5px 0 10px 0;
+  filter: drop-shadow(3px 3px 4px rgba(0,0,0,0.6));
+}
+.badge-1:hover {
+  transform: translateY(4px);
+  transition: all 0.3s;
+  filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2));
+  border-bottom: none;
+}
+</style>
+<!-- 評価 -->
+<div class="review">
+  <%= link_to post_reviews_path(post), :style=>"color: white;" do %>
+    <span class="far fa-comment-dots" style="color: blue;"></span>
+    <span class="badge badge-1"><%= post.reviews.count %>　レビュー</span>
+  <% end %>
+  <!-- ここに☆評価を追加する -->
+  <div class="average-review">
+    <% if post.reviews.blank? %>
+      <% average_review = 0 %>
+    <% else %>
+      <% average_review = post.reviews.average(:rate).round(1) %>
+    <% end %>
+    <strong>総合評価：<%= average_review %>点 | 平均</strong>
+  </div>
+  <span class="average-review-rating" data-score="<%= average_review %>"></span>
+</div>
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
