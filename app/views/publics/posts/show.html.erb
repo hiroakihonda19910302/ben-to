@@ -4,9 +4,13 @@
       <% if @post.user != current_user %>
         <div class="checklist">
           <!-- お気に入り -->
-          <%= render 'publics/posts/bookmark', post: @post %>
+          <div class="favorite_<%= @post.id %>">
+            <%= render 'publics/posts/bookmark', post: @post %>
+          </div>
           <!-- イイね -->
-          <%= render 'publics/posts/good', post: @post %>
+          <div class="post_<%= @post.id %>">
+            <%= render 'publics/posts/good', post: @post %>
+          </div>
         </div>
       <% else %>
         <!-- イイね -->
