@@ -1,0 +1,83 @@
+<!-- 他のページに影響がでた為こちらに記述 -->
+<style>
+.checklist .bookmark {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  margin-bottom: 10px;
+}
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+a.btn-tag {
+  padding: 1rem 1.5rem 0.5rem 50px;
+}
+a.btn-tag:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 100%;
+  content: "";
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+a.btn-tag--favorite {
+  color: #fff;
+  background: #f39800;
+}
+a.btn-tag--favorite:before {
+  background: #fff;
+}
+a.btn-tag--favorite i {
+  font-size: 120%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  padding: 1.2rem 0;
+  transition: all 0.3s;
+  text-align: center;
+  letter-spacing: 0;
+  opacity: 0.5;
+  color: #f39800;
+}
+a.btn-tag--favorite:hover {
+  background: #ffa50e;
+}
+a.btn-tag--favorite:hover i {
+  transform: scale(1.1);
+  opacity: 1;
+}
+</style>
+
+<!-- お気に入り -->
+<div class="bookmark">
+  <% if post.favorited_by?(current_user) %>
+    <a>
+      <%= link_to post_favorites_path(post), class: 'btn btn-tag btn-tag--favorite', method: :delete, remote: true do %>
+        <i class="fas fa-star"></i>お気に入りから外す
+      <% end %>
+    </a>
+  <% else %>
+    <a>
+      <%= link_to post_favorites_path(post), class: 'btn btn-tag btn-tag--favorite', method: :post, remote: true do %>
+        <i class="far fa-star"></i>お気に入り登録する
+      <% end %>
+    </a>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+<%= form_for [post,review] do |f| %>
+  <div id="star">
+    <h4 class="star-label"><%= f.label :"評価", class: "control-label" %></h4>
+    <%= f.hidden_field :rate, id: :review_star %>
+  </div>
+  <div class="form-review">
+    <h4 class="label-1"><%= f.label :"見出し", class: "control-label" %><br><span class="fontsize-1">※30文字以内</span></h4>
+    <%= f.text_area :title, class: "form-control text" %>
+  </div>
+  <div class="form-review">
+    <h4 class="label-1"><%= f.label :"レビュー", class: "control-label" %><br><span class="fontsize-1">※250文字以内</span></h4>
+    <%= f.text_area :review, rows:'6', class: "form-control text" %>
+  </div>
+  <%= f.submit "送信する", class: "btn btn-warning pull-right btn-3 mt-2" %>
+<% end %>
+
+<script>
+ $('#star').raty({
+   size: 36,
+   starOff: "<%= asset_path('star-off.png') %>",
+   starOn: "<%= asset_path('star-on.png') %>",
+   starHalf: "<%= asset_path('star-half.png') %>",
+   scoreName: 'review[rate]',
+   half: true,
+ });
+</script>

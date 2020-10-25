@@ -1,0 +1,27 @@
+<!-- 他のページに影響がでた為こちらに記述 投稿詳細のいいねとレビューのバッチ -->
+<style>
+.badge-1 {
+  margin: 5px 0 10px 0;
+  filter: drop-shadow(3px 3px 4px rgba(0,0,0,0.6));
+}
+.badge-1:hover {
+  transform: translateY(4px);
+  transition: all 0.3s;
+  filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2));
+  border-bottom: none;
+}
+</style>
+<!-- イイね -->
+<div class="good">
+  <% if post.gooded_by?(current_user) %>
+    <%= link_to post_goods_path(post), :style=>"color: white;", method: :delete, remote: true do %>
+      <span class="glyphicon glyphicon-heart" style="color: red;"></span>
+      <span class="badge badge-1"><%= post.goods.count %>　イイね</span>
+    <% end %>
+  <% else %>
+    <%= link_to post_goods_path(post), :style=>"color: white;", method: :post, remote: true do %>
+      <span class="glyphicon glyphicon-heart-empty" style="color: red;"></span>
+      <span class="badge badge-1"><%= post.goods.count %>　イイね</span>
+    <% end %>
+  <% end %>
+</div>

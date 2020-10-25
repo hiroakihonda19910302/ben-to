@@ -1,0 +1,26 @@
+<div class="row post-list">
+  <div class="col-xs-12 col-xs-offset-1">
+  <% posts.each do |post| %>
+    <% if post.genre.genre_status == true %>
+      <div class="col-xs-3 post-item mt-2 animation-1">
+        <div class="postimage">
+          <%= attachment_image_tag(post, :post_image, size: "250x210", fallback: 'no_image.jpg') %>
+        </div>
+        <div class="mt-1">
+          <%= attachment_image_tag(post.user, :profile_image, size: "50x50", class: "img-circle iconimg-1 ", fallback: 'no_image.jpg') %>
+          <span class="username"><i class="fas fa-user"></i><%= post.user.name %></span>
+        </div>
+        <span class="genre">
+          <%= post.genre.name %>
+        </span>
+        <%= link_to post_path(post.id), :style=>"color: tomato;" do %>
+          <p class="title">
+            <span><%= post.title %></span>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
+  <div class= "text-center"><%= paginate(posts) %></div>
+</div>
