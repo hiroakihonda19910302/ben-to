@@ -14,12 +14,12 @@
 <!-- イイね -->
 <div class="good">
   <% if post.gooded_by?(current_user) %>
-    <%= link_to post_goods_path(post), :style=>"color: white;", method: :delete do %>
+    <%= link_to post_goods_path(post), :style=>"color: white;", method: :delete, remote: true do %>
       <span class="glyphicon glyphicon-heart" style="color: red;"></span>
       <span class="badge badge-1"><%= post.goods.count %>　イイね</span>
     <% end %>
   <% else %>
-    <%= link_to post_goods_path(post), :style=>"color: white;", method: :post do %>
+    <%= link_to post_goods_path(post), :style=>"color: white;", method: :post, remote: true do %>
       <span class="glyphicon glyphicon-heart-empty" style="color: red;"></span>
       <span class="badge badge-1"><%= post.goods.count %>　イイね</span>
     <% end %>
