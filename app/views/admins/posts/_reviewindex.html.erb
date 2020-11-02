@@ -10,12 +10,13 @@
           <p class="fontweight-1"><%= l review.created_at, format: :default %></p>
           <p class="fontweight-1">評価：<%= review.rate %></p>
           <p class="review-rating" data-score="<%= review.rate %>"></p>
+          <p class="fontweight-1">レビューの感情分析スコア：<span style="color: #00CC00;"><%= review.score %></span></p>
           <p class="fontweight-1"><%= review.title %></p>
           <p class=""><%= review.review %></p>
+          <%= link_to admins_post_path(post) do %>
+            <%= attachment_image_tag(review.post, :post_image, size: "100x100", class: "posticon-img", fallback: "no_image2.jpg") %>
+          <% end %>
         </div>
-        <%= link_to admins_post_path(post) do %>
-          <%= attachment_image_tag(review.post, :post_image, size: "150x150", class: "posticon-img", fallback: "no_image2.jpg") %>
-        <% end %>
       </div>
     </div>
   <% end %>
