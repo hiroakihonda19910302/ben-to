@@ -7,8 +7,9 @@
   	<div class="chatting">
     	<div class="says-1">
     		<p class="fontweight-1"><%= l review.created_at, format: :default %></p>
-    		<p class="fontweight-1">評価：<%= review.rate %></p>
+    		<p class="fontweight-1">星評価：<%= review.rate %></p>
       	<p class="review-rating" data-score="<%= review.rate %>"></p>
+        <p class="fontweight-1">レビューの感情分析スコア：<span style="color: #00CC00;"><%= review.score %></span></p>
 				<p class="fontweight-1"><%= review.title %></p>
 				<p class=""><%= review.review %></p>
         <%= link_to post_path(post) do %>

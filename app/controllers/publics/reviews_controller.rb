@@ -9,6 +9,7 @@ class Publics::ReviewsController < ApplicationController
 		@review = Review.new(review_params)
  		@review.user_id = current_user.id
 		@review.post_id = @post.id
+    @review.score = Language.get_data(review_params[:review])  #この行を追加
 		@review.save
     redirect_to post_reviews_path
   end

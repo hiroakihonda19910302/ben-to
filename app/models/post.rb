@@ -4,6 +4,7 @@ class Post < ApplicationRecord
 	has_many :favorites, dependent: :destroy
 	has_many :reviews, dependent: :destroy
 	has_many :goods, dependent: :destroy
+	has_many :tags, dependent: :destroy
 
 	attachment :post_image, destroy: false
 

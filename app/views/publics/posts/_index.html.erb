@@ -13,6 +13,9 @@
         <span class="genre">
           <%= post.genre.name %>
         </span>
+        <% post.tags.each do |tag| %>
+          <span class="label"><%= tag.name %></span>
+        <% end %>
         <%= link_to post_path(post.id), :style=>"color: tomato;" do %>
           <p class="title">
             <span><%= post.title %></span>
