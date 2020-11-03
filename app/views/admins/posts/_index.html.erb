@@ -2,7 +2,7 @@
   <% if post.genre.genre_status == true %>
     <div class="col-xs-4 form-1 mt-2">
       <div class="postimage">
-        <%= attachment_image_tag(post, :post_image, size: "150x120", fallback: 'no_image.jpg') %>
+        <%= attachment_image_tag(post, :post_image, size: "200x140", fallback: 'no_image.jpg') %>
       </div>
       <div class="mt-1">
         <%= attachment_image_tag(post.user, :profile_image, size: "50x50", class: "img-circle iconimg-1 ", fallback: 'no_image.jpg') %>
@@ -11,6 +11,11 @@
       <span class="genre">
         <%= post.genre.name %>
       </span>
+      <div class="mb-1">
+        <% post.tags.each do |tag| %>
+          <span class="badge"><%= tag.name %></span>
+        <% end %>
+      </div>
       <%= link_to admins_post_path(post.id), :style=>"color: tomato;" do %>
         <p class="title">
           <span><%= post.title %></span>

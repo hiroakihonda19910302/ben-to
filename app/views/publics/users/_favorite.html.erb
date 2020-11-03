@@ -2,7 +2,7 @@
   <% if favorite.post.genre.genre_status == true %>
 		<div class="col-xs-3 form-1 mgn-6 js-animation">
       <div class="postimage">
-        <%= attachment_image_tag(favorite.post, :post_image, size: "220x180", fallback: 'no_image.jpg') %>
+        <%= attachment_image_tag(favorite.post, :post_image, size: "280x200", fallback: 'no_image.jpg') %>
       </div>
       <div class="mt-1">
         <%= attachment_image_tag(favorite.post.user, :profile_image, size: "50x50", class: "img-circle iconimg-1 ", fallback: 'no_image.jpg') %>
@@ -11,6 +11,11 @@
       <span class="genre">
         <%= favorite.post.genre.name %>
       </span>
+      <div class="mb-1">
+        <% favorite.post.tags.each do |tag| %>
+          <span class="badge"><%= tag.name %></span>
+        <% end %>
+      </div>
       <%= link_to post_path(favorite.post.id), :style=>"color: tomato;" do %>
         <p class="title">
           <span><%= favorite.post.title %></span>

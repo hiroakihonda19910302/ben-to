@@ -28,12 +28,17 @@
     </div>
 
     <div class="col-xs-7 post-body">
-      <h3 class="title fontshadow-1"><%= @post.title %></h3><br>
+      <h3 class="title fontshadow-1"><%= @post.title %></h3>
       <h4>
         <span class="genre">
           <%= @post.genre.name %>
         </span>
       </h4>
+      <div class="ml-4">
+        <% @post.tags.each do |tag| %>
+          <span class="badge"><%= tag.name %></span>
+        <% end %>
+      </div>
       <div class="col-xs-10 content"><%= @post.body %></div>
     </div>
     <% if @post.user == current_user %>
