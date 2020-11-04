@@ -45,7 +45,7 @@ class Publics::PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "新規投稿しました"
-      tags = Vision.get_image_data(@post.post_image)    
+      tags = Vision.get_image_data(@post.post_image)
       tags.each do |tag|
         @post.tags.create(name: tag)
       end
@@ -58,6 +58,11 @@ class Publics::PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:notice] = "投稿を更新しました"
+      @post.tags.destroy_all
+      tags = Vision.get_image_data(@post.post_image)
+      tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
       redirect_to post_path(@post)
     else
       render "edit"
